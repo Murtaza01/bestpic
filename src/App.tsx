@@ -1,34 +1,41 @@
-import { SyntheticEvent } from "react";
+import { useEffect, useState } from "react";
+import From from "./components/From";
+import { fetchUsers } from "./util/http";
+
+interface userObj {
+  _id: string;
+  name: string;
+  age?: number;
+  imageUrl?: string;
+}
 
 const App = () => {
-  function handleSubmit(e: SyntheticEvent) {
-    e.preventDefault();
-    const target = e.target as HTMLFormElement;
-    const formData = new FormData(target);
-
-    fetch("http://localhost:3000/user/new", {
-      method: "POST",
-      body: formData,
-    });
-  }
+  const [users, setUsers] = useState<userObj[]>();
+  useEffect(() => {
+    (async () => {
+      const result = await fetchUsers();
+      setUsers(result);
+    })();
+  }, []);
 
   return (
-    <div className="gird h-screen place-content-center text-3xl">
-      <form
-        className="flex flex-col items-center gap-5"
-        method="post"
-        encType="multipart/form-data"
-        onSubmit={handleSubmit}
-      >
-        <label htmlFor="name">
-          <input className="border-2" type="text" name="name" id="name" />
-        </label>
-        <label htmlFor="image">
-          <input type="file" name="image" id="image" accept="image/*" />
-        </label>
-        <button className="border-2 border-black px-2 py-1">Submit</button>
-      </form>
-    </div>
+    <>
+      <From />
+      <div className="">
+        <ul className="flex flex-wrap items-center justify-center gap-5">
+          {users?.map(({ name, imageUrl, age }, index) => {
+            return (
+              <li className="flex flex-col gap-2 border-2 p-5" key={index}>
+                <a href={imageUrl}>image</a>
+                <img src={imageUrl} alt="" />
+                <span>{name}</span>
+                <span> Age: {age}</span>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </>
   );
 };
 
