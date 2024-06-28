@@ -1,13 +1,10 @@
 const URL = "http://localhost:3000/user";
 
 export async function fetchUsers() {
-  try {
-    const response = await fetch(`${URL}/get/all`);
-    const users = response.json();
-    return users;
-  } catch (e) {
-    return e;
-  }
+  const response = await fetch(`${URL}/get/all`);
+  const users = response.json();
+  if (!response.ok) throw Error("failed to fetch data");
+  return users;
 }
 
 export function fetchNewUser(data: FormData) {
@@ -18,29 +15,24 @@ export function fetchNewUser(data: FormData) {
 }
 
 export async function fetchUpdateUser(id: string, data: {}) {
-  try {
-    const response = await fetch(`${URL}/edit/${id}`, {
-      method: "PATCH",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const result = response.json();
-    return result;
-  } catch (e) {
-    return e;
-  }
+  const response = await fetch(`${URL}/edit/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) throw Error("failed to fetch data");
+  const result = response.json();
+  return result;
 }
 
 export async function fetchDeleteUser(id: string) {
-  try {
-    const response = await fetch(`${URL}/delete/${id}`, {
-      method: "DELETE",
-    });
-    const result = response.json();
-    return result;
-  } catch (e) {
-    return e;
-  }
+  const response = await fetch(`${URL}/delete/${id}`, {
+    method: "DELETE",
+  });
+  if (!response.ok) throw Error("failed to fetch data");
+
+  const result = response.json();
+  return result;
 }
