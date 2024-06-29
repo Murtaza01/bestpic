@@ -6,7 +6,6 @@ const From = () => {
     e.preventDefault();
     const target = e.target as HTMLFormElement;
     const formData = new FormData(target);
-
     fetchNewUser(formData);
   }
   return (
