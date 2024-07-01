@@ -1,0 +1,43 @@
+/* .bgGr {
+  background-image: linear-gradient(
+    to top,
+    #ffc7c7,
+    #fbd3dd,
+    #f6dfed,
+    #f2ebf5,
+    #f6f6f6
+  );
+} */
+
+/* .floatY {
+  animation: floatY 3s 1.5s ease-in-out infinite alternate;
+}
+/* .scroller {
+  mask: linear-gradient(90deg, transparent, white 80%, white 20%, transparent);
+} */
+
+ /* .scroller-inner {
+   animation: scroll 20s linear infinite; 
+  user-select: none;
+}  */
+
+.floatX {
+  animation: floatX 3s ease-in-out infinite alternate;
+}
+
+@keyframes floatY {
+  100% {
+    translate: 0 5%;
+  }
+  0% {
+    translate: 0 -5%;
+  }
+}
+@keyframes floatX {
+  0% {
+    translate: 5% 0;
+  }
+  100% {
+    translate: -5% 0;
+  }
+} */

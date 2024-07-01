@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import Hero from "../layout/Hero";
 import Aos from "aos";
-import "../assets/aos.css";
+import "aos/dist/aos.css";
 import { FaCameraRetro } from "react-icons/fa";
-import { IconContext } from "react-icons";
+
 const RootPage = () => {
   useEffect(() => {
     Aos.init({

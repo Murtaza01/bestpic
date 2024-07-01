@@ -2,16 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .bgGr {
-  background-image: linear-gradient(
-    to top,
-    #ffc7c7,
-    #fbd3dd,
-    #f6dfed,
-    #f2ebf5,
-    #f6f6f6
-  );
-} */
+img {
+  max-inline-size: 100%;
+  width: 100%;
+  block-size: auto;
+  aspect-ratio: 16/9;
+}
 
 .animateTop {
   animation: fadeTop 1.5s;
@@ -22,6 +18,12 @@
 }
 .animateLeft {
   animation: fadeLeft 1.5s;
+}
+
+@keyframes scroll {
+  to {
+    translate: 100% 0;
+  }
 }
 
 @keyframes fadeTop {
@@ -55,28 +57,3 @@
     translate: 0 0;
   }
 }
-
-/* .floatY {
-  animation: floatY 3s 1.5s ease-in-out infinite alternate;
-}
-
-.floatX {
-  animation: floatX 3s ease-in-out infinite alternate;
-}
-
-@keyframes floatY {
-  100% {
-    translate: 0 5%;
-  }
-  0% {
-    translate: 0 -5%;
-  }
-}
-@keyframes floatX {
-  0% {
-    translate: 5% 0;
-  }
-  100% {
-    translate: -5% 0;
-  }
-} */
