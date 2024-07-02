@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Hero from "../layout/Hero";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { FaCameraRetro } from "react-icons/fa";
+import Nav from "../layout/Nav";
 
 const RootPage = () => {
   useEffect(() => {
@@ -11,15 +11,10 @@ const RootPage = () => {
     });
   }, []);
   return (
-    <div className="">
-      <nav className="relative grid h-14 place-content-center bg-gray-200">
-        <span className="absolute left-0 bg-red-300">EN</span>
-        <span className="flex h-14 items-center rounded-full bg-white px-2 text-center">
-          <FaCameraRetro className="p-1.5 text-5xl" />
-        </span>
-      </nav>
+    <main className="h-[75dvh] bg-gradient-to-b from-gray-300 from-90% to-transparent">
+      <Nav />
       <Hero />
-    </div>
+    </main>
   );
 };
 

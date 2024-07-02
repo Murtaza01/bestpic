@@ -1,15 +1,13 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow } from "swiper/modules";
 
-import img1 from "../assets/pic.jpg";
-import img2 from "../assets/2.jpg";
-
 import "swiper/css";
 import "swiper/css/effect-coverflow";
+import sliderData from "../assets/data/slider";
 
 const Slider = () => {
   return (
-    <div className="px-2">
+    <div className="px-2 py-5 md:py-20">
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
@@ -19,25 +17,20 @@ const Slider = () => {
         coverflowEffect={{
           slideShadows: true,
           rotate: 0,
-          stretch: 20,
+          stretch: 0,
           depth: 150,
           modifier: 2,
         }}
         modules={[EffectCoverflow]}
         className=""
       >
-        <SwiperSlide>
-          <img src={img1} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={img2} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={img1} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={img1} alt="" />
-        </SwiperSlide>
+        {sliderData.map(({ img }, index) => {
+          return (
+            <SwiperSlide key={index}>
+              <img src={img} alt="" />
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </div>
   );

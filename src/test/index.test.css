@@ -1,4 +1,4 @@
-/* .bgGr {
+.bgGr {
   background-image: linear-gradient(
     to top,
     #ffc7c7,
@@ -7,19 +7,18 @@
     #f2ebf5,
     #f6f6f6
   );
-} */
-
-/* .floatY {
+}
+.floatY {
   animation: floatY 3s 1.5s ease-in-out infinite alternate;
 }
-/* .scroller {
+.scroller {
   mask: linear-gradient(90deg, transparent, white 80%, white 20%, transparent);
-} */
+}
 
- /* .scroller-inner {
-   animation: scroll 20s linear infinite; 
+.scroller-inner {
+  animation: scroll 20s linear infinite;
   user-select: none;
-}  */
+}
 
 .floatX {
   animation: floatX 3s ease-in-out infinite alternate;
@@ -40,4 +39,53 @@
   100% {
     translate: -5% 0;
   }
-} */
+}
+
+.animateTop {
+  animation: fadeTop 1s;
+}
+
+.animateRight {
+  animation: fadeRight 1.5s;
+}
+.animateLeft {
+  animation: fadeLeft 1.5s;
+}
+
+@keyframes scroll {
+  to {
+    translate: 100% 0;
+  }
+}
+
+@keyframes fadeTop {
+  0% {
+    opacity: 0;
+    translate: 0 -100%;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes fadeRight {
+  0% {
+    opacity: 0;
+    translate: -100% 0;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@keyframes fadeLeft {
+  0% {
+    opacity: 0;
+    translate: 100% 0;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
