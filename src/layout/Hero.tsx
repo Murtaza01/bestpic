@@ -13,7 +13,7 @@ const Hero = () => {
         </p>
         <Link to={"login"} className="inline-block">
           {" "}
-          <button className="rounded-lg bg-yellow-300 px-4 py-1 shadow-sm shadow-black/70">
+          <button className="rounded-lg bg-[#00C9BC] px-4 py-1 text-black shadow-sm shadow-black/70">
             Participate Now
           </button>
         </Link>

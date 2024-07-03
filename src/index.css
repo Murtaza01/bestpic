@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primaryColor: var(#4c0519); /* rose-950*/
+  --accentColor: var(#00c9bc);
+}
+
 * {
   margin: 0;
   padding: 0;

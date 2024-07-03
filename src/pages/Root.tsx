@@ -11,7 +11,7 @@ const RootPage = () => {
     });
   }, []);
   return (
-    <main className="h-[75dvh] bg-gradient-to-b from-gray-300 from-90% to-transparent">
+    <main className="h-[85dvh] bg-gradient-to-b from-rose-950 from-90% to-transparent text-white">
       <Nav />
       <Hero />
     </main>
