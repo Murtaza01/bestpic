@@ -3,6 +3,7 @@ import Hero from "../layout/Hero";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import Nav from "../layout/Nav";
+import Slider from "../components/Slider";
 
 const RootPage = () => {
   useEffect(() => {
@@ -11,9 +12,10 @@ const RootPage = () => {
     });
   }, []);
   return (
-    <main className="h-[85dvh] bg-gradient-to-b from-rose-950 from-90% to-transparent text-white">
+    <main className="rootBg h-[60dvh] text-white">
       <Nav />
       <Hero />
+      <Slider />
     </main>
   );
 };

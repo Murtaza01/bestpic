@@ -7,7 +7,7 @@ import sliderData from "../assets/data/slider";
 
 const Slider = () => {
   return (
-    <div className="px-2 py-5 md:py-20">
+    <div className="px-2 md:py-20">
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
@@ -27,7 +27,7 @@ const Slider = () => {
         {sliderData.map(({ img }, index) => {
           return (
             <SwiperSlide key={index}>
-              <img src={img} alt="" />
+              <img src={img} className="slider-img" alt="" />
             </SwiperSlide>
           );
         })}

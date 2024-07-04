@@ -3,17 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --primaryColor: var(#4c0519); /* rose-950*/
-  --accentColor: var(#00c9bc);
+  --primaryColor: #334155, #065f46; /* slate-700, emerald-700*/
+  --accentColor: #e11d48 /*rose-600*/;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.rootBg {
+  background-image: url("./assets/images/bgHero.png"),
+    linear-gradient(to bottom, #334155, #1e495e, #00525f, #005956, #065f46);
 }
 
-img {
+.slider-img {
   max-inline-size: 100%;
   block-size: auto;
   aspect-ratio: 16/9;

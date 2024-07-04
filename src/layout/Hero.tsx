@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
-import Slider from "../components/Slider";
-import camera from "../assets/images/camera3.svg";
-import camera2 from "../assets/images/camera4.svg";
+
 const Hero = () => {
   return (
     <>
-      <div className="relative space-y-8 px-4 py-14 text-center">
+      <div className="relative space-y-10 px-4 py-14 text-center">
         <h1 className="text-3xl">Best Picture</h1>
         <p className="text-lg">
           Be the judge of the best pictures shared by people, participate by
@@ -13,14 +11,11 @@ const Hero = () => {
         </p>
         <Link to={"login"} className="inline-block">
           {" "}
-          <button className="rounded-lg bg-[#00C9BC] px-4 py-1 text-black shadow-sm shadow-black/70">
+          <button className="rounded-lg bg-rose-600 px-4 py-1 text-white shadow-sm shadow-black/70">
             Participate Now
           </button>
         </Link>
-        <img src={camera2} className="absolute left-0 top-0 w-36" alt="" />
-        <img src={camera} className="absolute bottom-5 right-0 w-36" alt="" />
       </div>
-      <Slider />
     </>
   );
 };
