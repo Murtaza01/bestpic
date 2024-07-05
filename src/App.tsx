@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/Login";
 import RootPage from "./pages/Root";
+import MvsFPage from "./pages/MvsF";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -9,6 +10,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
+  },
+  {
+    path: "/mohamed-vs-fatima",
+    element: <MvsFPage />,
   },
 ]);
 

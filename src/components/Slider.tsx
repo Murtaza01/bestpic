@@ -7,7 +7,7 @@ import sliderData from "../assets/data/slider";
 
 const Slider = () => {
   return (
-    <div className="px-2 md:py-20">
+    <div className="flex flex-1 items-center">
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
@@ -22,7 +22,7 @@ const Slider = () => {
           modifier: 2,
         }}
         modules={[EffectCoverflow]}
-        className=""
+        className="flex-1"
       >
         {sliderData.map(({ img }, index) => {
           return (
