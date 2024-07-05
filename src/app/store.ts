@@ -35,13 +35,13 @@ const store = configureStore({
   reducer: mfReducer.reducer,
 });
 
+export default store;
+
+export const mfActions = mfReducer.actions;
+
 // for typescript
 type RootState = ReturnType<typeof store.getState>;
 type AppDispatch = typeof store.dispatch;
 
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 export const useAppSelector = useSelector.withTypes<RootState>();
-
-export default store;
-
-export const mfActions = mfReducer.actions;

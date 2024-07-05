@@ -14,8 +14,11 @@
 
 .slider-img {
   max-inline-size: 100%;
-  block-size: auto;
-  aspect-ratio: 16/9;
+  width: 100%;
+  block-size: 100%;
+  /* height: 100%; */
+  /* aspect-ratio: 2/1; */
+  object-fit: cover;
 }
 
 .clip {

@@ -8,7 +8,8 @@ const MvsFPage = () => {
   const [index, setIndex] = useState<number>(0);
   const { mohamed, fatima } = mfData;
   const dispatch = useAppDispatch();
-  const { score } = useAppSelector((state) => state.fatima);
+  // const { score: mohamedScore } = useAppSelector((state) => state.mohamed);
+  const { score: fatimaScore } = useAppSelector((state) => state.fatima);
 
   // shows random order of images
   const isEven = Math.floor(Math.random() * index) % 2 === 0;
@@ -18,14 +19,19 @@ const MvsFPage = () => {
 
   function handleClick() {
     dispatch(mfActions.addToFatima());
+    console.log(fatimaScore);
+
     setIndex((prev) => prev + 1);
-    console.log(score);
   }
 
   const show = index === mohamed.length;
 
   if (show) {
-    return <h1>hi</h1>;
+    return (
+      <h1 className="grid h-dvh place-items-center text-4xl">
+        Fatima: ({fatimaScore})
+      </h1>
+    );
   }
 
   return (
@@ -33,8 +39,8 @@ const MvsFPage = () => {
       <div
         className={`flex h-dvh ${isEven ? "flex-col" : "flex-col-reverse"} justify-center *:cursor-pointer`}
       >
-        <img src={mohamed[index]} alt="" onClick={handleClick} />
-        <img src={fatima[index]} alt="" />
+        <img src={mohamed[index]} alt="" />
+        <img src={fatima[index]} alt="" onClick={handleClick} />
       </div>
     </>
   );
