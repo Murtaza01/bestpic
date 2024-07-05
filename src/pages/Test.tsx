@@ -1,7 +1,7 @@
 import Nav from "../layout/Nav";
 import Hero from "../layout/Hero";
 // import Slider from "../components/Slider";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 const Test = () => {
   return (
     <>
@@ -13,6 +13,7 @@ const Test = () => {
       <Link to={"mohamed-vs-fatima"}>
         <div className="mx-auto my-10 h-80 w-96 bg-green-500"></div>
       </Link>
+      <Outlet />
     </>
   );
 };

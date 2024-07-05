@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import LoginPage from "./pages/Login";
+// import LoginPage from "./pages/Login";
 import RootPage from "./pages/Root";
-import MvsFPage from "./pages/MvsF";
+// import MvsFPage from "./pages/MvsF";
 import Test from "./pages/Test";
 const router = createBrowserRouter([
   {
@@ -12,14 +12,14 @@ const router = createBrowserRouter([
     path: "/test",
     element: <Test />,
   },
-  {
-    path: "/test/login",
-    element: <LoginPage />,
-  },
-  {
-    path: "/test/mohamed-vs-fatima",
-    element: <MvsFPage />,
-  },
+  // {
+  //   path: "/test/login",
+  //   element: <LoginPage />,
+  // },
+  // {
+  //   path: "/test/mohamed-vs-fatima",
+  //   element: <MvsFPage />,
+  // },
 ]);
 
 const App = () => {
