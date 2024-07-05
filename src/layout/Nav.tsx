@@ -8,7 +8,7 @@ const Nav = () => {
       <button className="clip flex size-20 bg-rose-600 p-3 font-semibold text-white">
         EN
       </button>
-      <Link to={"login"} className="w-20 pt-0.5">
+      <Link to={""} className="w-20 pt-0.5">
         <img src={condition ? authUser : unauthUser} className="" alt="" />
       </Link>
     </nav>
