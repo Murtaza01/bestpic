@@ -34,7 +34,7 @@ const Slider = () => {
         {sliderData.map(({ img }, index) => {
           return (
             <SwiperSlide key={index}>
-              <img src={img} className="slider-img" alt="" loading="eager" />
+              <img src={img} className="slider-img" alt="" />
             </SwiperSlide>
           );
         })}
