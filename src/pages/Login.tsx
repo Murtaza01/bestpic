@@ -1,7 +1,7 @@
-// import From from "../components/Form";
+import From from "../components/Form";
 
-// const LoginPage = () => {
-//   return <From />;
-// };
+const LoginPage = () => {
+  return <From />;
+};
 
-// export default LoginPage;
+export default LoginPage;
