@@ -9,22 +9,41 @@ const From = () => {
     fetchNewUser(formData);
   }
   return (
-    <div className="gird">
-      <form
-        className="flex flex-col items-center gap-5"
-        method="post"
-        encType="multipart/form-data"
-        onSubmit={handleSubmit}
-      >
-        <label htmlFor="name">
-          <input className="border-2" type="text" name="name" id="name" />
+    <form
+      className="flex w-full flex-1 flex-col items-center justify-center gap-10"
+      method="post"
+      encType="multipart/form-data"
+      onSubmit={handleSubmit}
+    >
+      <div className="relative">
+        <input
+          className="peer block border-b-2 border-black/50 bg-transparent outline-none"
+          type="text"
+          name="name"
+          id="name"
+        />
+        <label
+          htmlFor="name"
+          className="absolute top-0 cursor-text transition-all duration-[400ms] peer-focus:-top-6 peer-focus:scale-90"
+        >
+          Name
         </label>
-        <label htmlFor="image">
-          <input type="file" name="image" id="image" accept="image/*" />
-        </label>
-        <button className="border-2 border-black px-2 py-1">Submit</button>
-      </form>
-    </div>
+      </div>
+
+      <label htmlFor="image" className="cursor-pointer">
+        Upload Image
+        <input
+          className="hidden"
+          type="file"
+          name="image"
+          id="image"
+          accept="image/*"
+        />
+      </label>
+      <button className="rounded-md bg-black/20 px-10 py-2 backdrop-blur-sm">
+        Submit
+      </button>
+    </form>
   );
 };
 

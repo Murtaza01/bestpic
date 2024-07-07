@@ -20,6 +20,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "swiper.d.ts"],
+  "include": ["src"],
+  "exclude": ["src/test"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

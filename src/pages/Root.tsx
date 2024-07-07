@@ -10,7 +10,7 @@ const RootPage = () => {
         <div className="absolute inset-0 z-20 flex flex-col bg-white/20 backdrop-blur-[1px]">
           <Nav />
           <div className="flex-1 px-4 text-center font-semibold">
-            <div className="flex h-[90%] flex-col items-center justify-center gap-10">
+            <div className="flex h-[95%] flex-col items-center justify-center gap-10">
               <h1 className="font-serif text-5xl uppercase">Best Picture</h1>
               <p className="text-lg">
                 Be the judge of the best pictures shared by people, participate
@@ -24,6 +24,7 @@ const RootPage = () => {
               </Link>
             </div>
           </div>
+          <span className="font-mono font-bold">or see our Challenges </span>
         </div>
       </main>
     </>
