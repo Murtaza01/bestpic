@@ -8,7 +8,7 @@ const MvsFPage = () => {
   const [index, setIndex] = useState<number>(0);
   const { mohamed, fatima } = mfData;
   const dispatch = useAppDispatch();
-  // const { score: mohamedScore } = useAppSelector((state) => state.mohamed);
+  const { score: mohamedScore } = useAppSelector((state) => state.mohamed);
   const { score: fatimaScore } = useAppSelector((state) => state.fatima);
 
   // shows random order of images
@@ -17,10 +17,12 @@ const MvsFPage = () => {
   shuffle(mohamed);
   shuffle(fatima);
 
-  function handleClick() {
+  function handleMohamedPick() {
+    dispatch(mfActions.addToMohamed());
+    setIndex((prev) => prev + 1);
+  }
+  function handleFatimaPick() {
     dispatch(mfActions.addToFatima());
-    console.log(fatimaScore);
-
     setIndex((prev) => prev + 1);
   }
 
@@ -29,7 +31,7 @@ const MvsFPage = () => {
   if (show) {
     return (
       <h1 className="grid h-dvh place-items-center text-4xl">
-        Fatima: ({fatimaScore})
+        Fatima: ({fatimaScore}) \n mohamed: ({mohamedScore})
       </h1>
     );
   }
@@ -39,8 +41,8 @@ const MvsFPage = () => {
       <div
         className={`flex h-dvh ${isEven ? "flex-col" : "flex-col-reverse"} justify-center *:cursor-pointer`}
       >
-        <img src={mohamed[index]} alt="" />
-        <img src={fatima[index]} alt="" onClick={handleClick} />
+        <img src={mohamed[index]} alt="" onClick={handleMohamedPick} />
+        <img src={fatima[index]} alt="" onClick={handleFatimaPick} />
       </div>
     </>
   );
