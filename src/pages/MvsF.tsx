@@ -17,14 +17,13 @@ const MvsFPage = () => {
     firstRender = true;
   }
 
-  function handleClick(name: string) {
-    if (name === "mohamed") {
+  function handleClick(id: string) {
+    if (id === "mohamed") {
       dispatch(mfActions.addToMohamed());
-    } else if (name === "fatima") {
+    } else if (id === "fatima") {
       dispatch(mfActions.addToFatima());
     }
     setTimeout(() => setCurrentIndex((prev) => prev + 1), 400);
-    console.log(fatimaScore);
   }
 
   const show = currentIndex === mfData.length;
@@ -32,7 +31,7 @@ const MvsFPage = () => {
   if (show) {
     return (
       <h1 className="grid h-dvh place-items-center text-4xl">
-        Fatima: ({fatimaScore}) \n mohamed: ({mohamedScore})
+        Fatima: ({fatimaScore}) mohamed: ({mohamedScore})
       </h1>
     );
   }
