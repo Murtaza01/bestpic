@@ -4,29 +4,30 @@ import { shuffle } from "../util/helpers";
 import { mfActions } from "../app/store";
 import { useAppDispatch, useAppSelector } from "../app/store";
 
+let firstRender = false;
+
 const MvsFPage = () => {
-  const [index, setIndex] = useState<number>(0);
-  const { mohamed, fatima } = mfData;
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const dispatch = useAppDispatch();
   const { score: mohamedScore } = useAppSelector((state) => state.mohamed);
   const { score: fatimaScore } = useAppSelector((state) => state.fatima);
 
-  // shows random order of images
-  const isEven = Math.floor(Math.random() * index) % 2 === 0;
-
-  shuffle(mohamed);
-  shuffle(fatima);
-
-  function handleMohamedPick() {
-    dispatch(mfActions.addToMohamed());
-    setIndex((prev) => prev + 1);
-  }
-  function handleFatimaPick() {
-    dispatch(mfActions.addToFatima());
-    setIndex((prev) => prev + 1);
+  if (!firstRender) {
+    shuffle(mfData);
+    firstRender = true;
   }
 
-  const show = index === mohamed.length;
+  function handleClick(name: string) {
+    if (name === "mohamed") {
+      dispatch(mfActions.addToMohamed());
+    } else if (name === "fatima") {
+      dispatch(mfActions.addToFatima());
+    }
+    setTimeout(() => setCurrentIndex((prev) => prev + 1), 400);
+    console.log(fatimaScore);
+  }
+
+  const show = currentIndex === mfData.length;
 
   if (show) {
     return (
@@ -38,12 +39,28 @@ const MvsFPage = () => {
 
   return (
     <>
-      <div
-        className={`flex h-dvh ${isEven ? "flex-col" : "flex-col-reverse"} justify-center *:cursor-pointer`}
-      >
-        <img src={mohamed[index]} alt="" onClick={handleMohamedPick} />
-        <img src={fatima[index]} alt="" onClick={handleFatimaPick} />
-      </div>
+      {mfData.map((person, index) => {
+        if (currentIndex === index) {
+          return (
+            <div
+              key={index}
+              className={`mvsfPage flex flex-col justify-center gap-y-1 bg-red-600`}
+            >
+              {person.map(({ image, id }) => {
+                return (
+                  <img
+                    key={id}
+                    src={image}
+                    className="transition-all active:brightness-50 active:saturate-50"
+                    alt=""
+                    onClick={() => handleClick(id)}
+                  />
+                );
+              })}
+            </div>
+          );
+        }
+      })}
     </>
   );
 };

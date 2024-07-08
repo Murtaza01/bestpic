@@ -8,8 +8,21 @@
   object-fit: cover;
 }
 
-.pic {
+.loginBg {
   background: url("./assets/images/loginBg.jpg") no-repeat center;
   background-size: cover;
   object-fit: cover;
+}
+
+.mvsfPage {
+  /* half the gap,which is gap-1 = 4px  */
+  height: calc(100dvh - 2px);
+}
+
+.mvsfPage > * {
+  position: relative;
+  height: 50%;
+  width: 100%;
+  object-fit: cover;
+  cursor: pointer;
 }

@@ -36,7 +36,7 @@ const From = () => {
         />
         <label
           htmlFor="name"
-          className="absolute -top-4 start-0 cursor-text text-sm transition-all peer-placeholder-shown:top-1 peer-placeholder-shown:text-base"
+          className="absolute -top-5 start-0 cursor-text text-sm transition-all peer-placeholder-shown:top-1 peer-placeholder-shown:text-base"
         >
           Your Name
         </label>

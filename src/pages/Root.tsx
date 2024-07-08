@@ -17,7 +17,7 @@ const RootPage = () => {
                 by adding your picture and enter a challenge with other people
               </p>
               <Link
-                to={"login"}
+                to={"mohamed-vs-fatima"}
                 className="rounded-sm bg-white/60 px-5 py-1 backdrop-blur-sm"
               >
                 Participate Now
