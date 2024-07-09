@@ -9,7 +9,9 @@
 }
 
 .loginBg {
-  background: url("./assets/images/loginBg.jpg") no-repeat center;
+  background:
+    url("./assets/images/loginBg.jpg") no-repeat center,
+    #111827;
   background-size: cover;
   object-fit: cover;
 }

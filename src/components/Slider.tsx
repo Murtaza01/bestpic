@@ -17,13 +17,13 @@ const Slider = () => {
         crossFade: true,
       }}
       modules={[Autoplay, EffectFade]}
-      className="size-full"
+      className={`size-full`}
       dir="ltr"
     >
       {sliderData.map(({ img }, index) => {
         return (
           <SwiperSlide key={index}>
-            <img src={img} className="slider-img" alt="" />
+            <img src={img} className="slider-img" alt="" loading="lazy" />
           </SwiperSlide>
         );
       })}

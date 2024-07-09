@@ -1,18 +1,35 @@
 import blueCar from "../images/blueCar.jpg";
 import books from "../images/books.jpg";
-import catSitting from "../images/catSitting.jpg";
 import doorView from "../images/doorView.jpg";
 import manSitting from "../images/manSitting.jpg";
-import mosque from "../images/mosque.jpg";
 import niceView from "../images/niceView.jpg";
 import oldMan from "../images/oldMan.jpg";
 import roman from "../images/roman.jpg";
-import ruinedBuliding from "../images/ruinedBuliding.jpg";
-
+import theThing from "../images/theThing.jpg";
+import coffeeMan from "../images/coffeeMan.jpg";
+import karblia from "../images/karblia.jpg";
+import freedomArea from "../images/freedomArea.jpg";
+import manyBooks from "../images/manyBooks.jpg";
+import sea from "../images/sea.jpg";
+import miniCar from "../images/miniCar.jpg";
 const sliderData = [
   {
     img: blueCar,
   },
+  {
+    img: karblia,
+  },
+  {
+    img: miniCar,
+  },
+  {
+    img: coffeeMan,
+  },
+
+  {
+    img: sea,
+  },
+
   {
     img: doorView,
   },
@@ -23,7 +40,7 @@ const sliderData = [
     img: manSitting,
   },
   {
-    img: catSitting,
+    img: theThing,
   },
 
   {
@@ -37,10 +54,10 @@ const sliderData = [
     img: niceView,
   },
   {
-    img: ruinedBuliding,
+    img: freedomArea,
   },
   {
-    img: mosque,
+    img: manyBooks,
   },
 ];
 
