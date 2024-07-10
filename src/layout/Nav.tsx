@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Nav = () => {
   const [lang, setLang] = useState("Ar");
   return (
-    <nav className="">
+    <nav className="fixed top-0 z-20 w-full backdrop-blur-[2px]">
       <ul className="flex items-center gap-8 px-2 font-mono font-bold">
         <li className="flex-1 text-2xl">Bestpic.</li>
         <li className="">

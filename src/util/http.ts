@@ -1,3 +1,5 @@
+import { processError } from "./helpers";
+
 const URL = "http://localhost:3000/user";
 
 export async function fetchUsers() {
@@ -7,11 +9,16 @@ export async function fetchUsers() {
   return users;
 }
 
-export function fetchNewUser(data: FormData) {
-  fetch(`${URL}/new`, {
-    method: "POST",
-    body: data,
-  });
+export async function fetchNewUser(data: FormData) {
+  try {
+    await fetch(`${URL}/new`, {
+      method: "POST",
+      body: data,
+    });
+  } catch (error) {
+    // returns the error message if it exits
+    return processError(error);
+  }
 }
 
 export async function fetchUpdateUser(id: string, data: {}) {

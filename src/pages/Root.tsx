@@ -6,10 +6,10 @@ import { FaChevronDown } from "react-icons/fa";
 const RootPage = () => {
   return (
     <>
+      <Nav />
       <main className="relative h-dvh">
         <Slider />
-        <div className="absolute inset-0 z-20 flex flex-col bg-white/25 backdrop-blur-[2px]">
-          <Nav />
+        <div className="absolute inset-0 z-10 flex flex-col bg-white/25 backdrop-blur-[2px]">
           <div className="flex-1 px-4 text-center font-semibold">
             <div className="flex h-[95%] flex-col items-center justify-center gap-10">
               <h1 className="font-serif text-5xl uppercase">Best Picture</h1>
@@ -31,6 +31,9 @@ const RootPage = () => {
           </span>
         </div>
       </main>
+      <div className="h-dvh">
+        <h1>hello world</h1>
+      </div>
     </>
   );
 };

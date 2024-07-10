@@ -12,3 +12,8 @@ export function shuffle(array: any[]) {
     ];
   }
 }
+
+export function processError(error: unknown) {
+  if (error instanceof Error) return error.message;
+  return String(error);
+}
