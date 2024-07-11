@@ -28,6 +28,10 @@ const mfReducer = createSlice({
     fatimaWon(state) {
       state.fatima.won++;
     },
+    zeroingScore(state) {
+      state.fatima.score = 0;
+      state.mohamed.score = 0;
+    },
   },
 });
 

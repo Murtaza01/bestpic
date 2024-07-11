@@ -2,22 +2,36 @@ import { SyntheticEvent, useState } from "react";
 import { fetchNewUser } from "../util/http";
 import { MdCloudUpload } from "react-icons/md";
 import { MdError } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const From = () => {
   const [fileName, setFileName] = useState<string>();
   const [error, setError] = useState<string | undefined>();
-
+  const [submitting, setSubmitting] = useState<boolean | undefined>();
+  const navigate = useNavigate();
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
+    setSubmitting(true);
+    // if no file selected set empty string to show error and don't send data
+    if (!fileName) {
+      setFileName("");
+      setSubmitting(false);
+      return;
+    }
     const target = e.target as HTMLFormElement;
     const formData = new FormData(target);
     const error = await fetchNewUser(formData);
-    // if error exist save it and show it
-    setError(error);
-    // if no file selected set empty string to show error
-    if (!fileName) {
-      setFileName("");
+
+    if (!error) {
+      console.log("you're logged in");
+      // localStorage to save the user login in and then show the user instead of login
+      setSubmitting(false);
+      navigate("..");
+    } else {
+      setError(error);
+      setSubmitting(false);
     }
+    // if error exist save it and show it
   }
 
   function handleChange(e: SyntheticEvent) {
@@ -57,21 +71,24 @@ const From = () => {
         </label>
       </div>
 
-      <label
-        htmlFor="image"
-        className={`flex items-center gap-2 rounded-sm px-2 py-1 ${fileName ? "bg-green-600" : "bg-rose-600"}`}
-      >
-        <MdCloudUpload className={`text-xl`} />
-        {fileName ? fileName : "Upload Your Image"}
-        <input
-          className="hidden"
-          type="file"
-          name="image"
-          id="image"
-          accept="image/*"
-          onChange={handleChange}
-        />
-      </label>
+      <div className="flex flex-col">
+        <label
+          htmlFor="image"
+          className={`flex max-w-96 flex-auto cursor-pointer flex-wrap items-center justify-center gap-2 overflow-hidden rounded-sm px-2 py-1 text-center ${fileName ? "bg-green-600" : "bg-rose-600"}`}
+        >
+          <MdCloudUpload className="text-xl" />
+          {fileName ? fileName : "Upload Your Image"}
+          <input
+            className="hidden"
+            type="file"
+            name="image"
+            id="image"
+            accept="image/*"
+            onChange={handleChange}
+          />
+        </label>
+      </div>
+
       {fileName === "" && (
         <span className="">
           <MdError className="inline text-xl text-rose-500" /> put your godman
@@ -79,7 +96,7 @@ const From = () => {
         </span>
       )}
       <button className="rounded-md bg-black/40 px-10 py-2 backdrop-blur-sm">
-        Submit
+        {submitting ? "Submitting..." : "Submit"}
       </button>
     </form>
   );

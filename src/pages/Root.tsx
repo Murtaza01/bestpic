@@ -1,39 +1,15 @@
-import { Link } from "react-router-dom";
-import Slider from "../components/Slider";
 import Nav from "../layout/Nav";
-import { FaChevronDown } from "react-icons/fa";
-
+import Hero from "../layout/Hero";
 const RootPage = () => {
   return (
     <>
       <Nav />
-      <main className="relative h-dvh">
-        <Slider />
-        <div className="absolute inset-0 z-10 flex flex-col bg-white/25 backdrop-blur-[2px]">
-          <div className="flex-1 px-4 text-center font-semibold">
-            <div className="flex h-[95%] flex-col items-center justify-center gap-10">
-              <h1 className="font-serif text-5xl uppercase">Best Picture</h1>
-              <p className="text-lg">
-                Be the judge of the best pictures shared by people, participate
-                by adding your picture and enter a challenge with other people
-              </p>
-              <Link
-                to={"mohamed-vs-fatima"}
-                className="rounded-sm bg-white/60 px-5 py-1 backdrop-blur-sm"
-              >
-                Participate Now
-              </Link>
-            </div>
-          </div>
-          <span className="mx-auto w-[90%] text-center font-mono font-bold">
-            or see our Challenges{" "}
-            <FaChevronDown className="inline animate-bounce text-xl" />{" "}
-          </span>
+      <Hero />
+      <section className="mx-10 my-10 h-[50rem]">
+        <div className="grid aspect-square place-items-center bg-red-300">
+          <h1>Hello world</h1>
         </div>
-      </main>
-      <div className="h-dvh">
-        <h1>hello world</h1>
-      </div>
+      </section>
     </>
   );
 };

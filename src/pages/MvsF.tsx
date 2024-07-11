@@ -16,6 +16,10 @@ const MvsFPage = () => {
     shuffle(mfData);
     firstRender = true;
   }
+  // if back score = 0
+  window.onpopstate = () => {
+    dispatch(mfActions.zeroingScore());
+  };
 
   function handleClick(id: string) {
     if (id === "mohamed") {
@@ -23,7 +27,7 @@ const MvsFPage = () => {
     } else if (id === "fatima") {
       dispatch(mfActions.addToFatima());
     }
-    setTimeout(() => setCurrentIndex((prev) => prev + 1), 400);
+    setTimeout(() => setCurrentIndex((prev) => prev + 1), 300);
   }
 
   const show = currentIndex === mfData.length;
@@ -41,16 +45,13 @@ const MvsFPage = () => {
       {mfData.map((person, index) => {
         if (currentIndex === index) {
           return (
-            <div
-              key={index}
-              className={`mvsfPage flex flex-col justify-center gap-y-1 bg-red-600`}
-            >
+            <div key={index} className="h-dvh">
               {person.map(({ image, id }) => {
                 return (
                   <img
                     key={id}
                     src={image}
-                    className="transition-all active:brightness-50 active:saturate-50"
+                    className="h-[50%] w-full cursor-pointer border-red-600 object-cover transition-all first:border-b-4 active:brightness-150 active:saturate-150"
                     alt=""
                     onClick={() => handleClick(id)}
                   />
