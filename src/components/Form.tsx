@@ -9,6 +9,7 @@ const From = () => {
   const [error, setError] = useState<string | undefined>();
   const [submitting, setSubmitting] = useState<boolean | undefined>();
   const navigate = useNavigate();
+
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
     setSubmitting(true);
@@ -24,14 +25,13 @@ const From = () => {
 
     if (!error) {
       console.log("you're logged in");
-      // localStorage to save the user login in and then show the user instead of login
+      // localStorage to save the user login in and then show the user instead of login text
       setSubmitting(false);
       navigate("..");
     } else {
       setError(error);
       setSubmitting(false);
     }
-    // if error exist save it and show it
   }
 
   function handleChange(e: SyntheticEvent) {
@@ -71,10 +71,10 @@ const From = () => {
         </label>
       </div>
 
-      <div className="flex flex-col">
+      <div className="max-w-96 px-4">
         <label
           htmlFor="image"
-          className={`flex max-w-96 flex-auto cursor-pointer flex-wrap items-center justify-center gap-2 overflow-hidden rounded-sm px-2 py-1 text-center ${fileName ? "bg-green-600" : "bg-rose-600"}`}
+          className={`flex w-full cursor-pointer flex-wrap items-center justify-center gap-2 overflow-hidden rounded-sm px-2 py-1 text-center ${fileName ? "bg-green-600" : "bg-rose-600"}`}
         >
           <MdCloudUpload className="text-xl" />
           {fileName ? fileName : "Upload Your Image"}

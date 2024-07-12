@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
 import Slider from "../components/Slider";
 import { FaChevronDown } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const Hero = () => {
+  const { t } = useTranslation();
   return (
     <main className="relative h-dvh">
       <Slider />
       <div className="absolute inset-0 z-10 flex flex-col bg-white/25 backdrop-blur-[2px]">
         <div className="flex-1 px-4 text-center font-semibold">
           <div className="flex h-[95%] flex-col items-center justify-center gap-10">
-            <h1 className="font-serif text-5xl uppercase">Best Picture</h1>
+            <h1 className="font-serif text-5xl uppercase">{t("bestPic")}</h1>
             <p className="text-lg">
               Be the judge of the best pictures shared by people, participate by
               adding your picture and enter a challenge with other people
