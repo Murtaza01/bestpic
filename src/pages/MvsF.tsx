@@ -1,8 +1,9 @@
 import { useState } from "react";
-import mfData from "../assets/data/mf";
+import mfData from "../assets/data/mohamed_fatima";
 import { shuffle } from "../util/helpers";
-import { mfActions } from "../app/store";
 import { useAppDispatch, useAppSelector } from "../app/store";
+import { incFatima, incMohamed, zeroingScore } from "../app/store/scoreSlice";
+import { fetchUpdateUserWins } from "../util/http";
 
 let firstRender = false;
 
@@ -18,14 +19,14 @@ const MvsFPage = () => {
   }
   // if back score = 0
   window.onpopstate = () => {
-    dispatch(mfActions.zeroingScore());
+    dispatch(zeroingScore());
   };
 
   function handleClick(id: string) {
     if (id === "mohamed") {
-      dispatch(mfActions.addToMohamed());
+      dispatch(incMohamed());
     } else if (id === "fatima") {
-      dispatch(mfActions.addToFatima());
+      dispatch(incFatima());
     }
     setTimeout(() => setCurrentIndex((prev) => prev + 1), 300);
   }
@@ -33,6 +34,12 @@ const MvsFPage = () => {
   const show = currentIndex === mfData.length;
 
   if (show) {
+    if (fatimaScore > mohamedScore) {
+      fetchUpdateUserWins("fatima");
+    } else if (mohamedScore > fatimaScore) {
+      fetchUpdateUserWins("mohamed");
+    }
+
     return (
       <h1 className="grid h-dvh place-items-center text-4xl">
         Fatima: ({fatimaScore}) mohamed: ({mohamedScore})

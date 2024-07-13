@@ -43,3 +43,12 @@ export async function fetchDeleteUser(id: string) {
   const result = response.json();
   return result;
 }
+
+export async function fetchUpdateUserWins(name: string) {
+  const response = await fetch(`${URL}/challenge/${name}`, {
+    method: "PATCH",
+  });
+  if (!response.ok) throw Error("failed to connect");
+  const result = response.json();
+  return result;
+}
