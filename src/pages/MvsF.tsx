@@ -3,7 +3,7 @@ import mfData from "../assets/data/mohamed_fatima";
 import { shuffle } from "../util/helpers";
 import { useAppDispatch, useAppSelector } from "../app/store";
 import { incFatima, incMohamed, zeroingScore } from "../app/store/scoreSlice";
-import { fetchUpdateUserWins } from "../util/http";
+import { fetchChallengers, fetchUpdateUserWins } from "../util/http";
 
 let firstRender = false;
 
@@ -33,12 +33,24 @@ const MvsFPage = () => {
 
   const show = currentIndex === mfData.length;
 
+  //TODO: move this into a component and add the logic
   if (show) {
     if (fatimaScore > mohamedScore) {
-      fetchUpdateUserWins("fatima");
+      (async () => {
+        const result = await fetchUpdateUserWins("fatima");
+        console.log(result);
+      })();
     } else if (mohamedScore > fatimaScore) {
-      fetchUpdateUserWins("mohamed");
+      (async () => {
+        const result = await fetchUpdateUserWins("mohamed");
+        console.log(result);
+      })();
     }
+
+    (async () => {
+      const result = await fetchChallengers();
+      console.log(result);
+    })();
 
     return (
       <h1 className="grid h-dvh place-items-center text-4xl">

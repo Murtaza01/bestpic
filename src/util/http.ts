@@ -3,7 +3,7 @@ import { processError } from "./helpers";
 const URL = "http://localhost:3000/user";
 
 export async function fetchUsers() {
-  const response = await fetch(`${URL}/get/all`);
+  const response = await fetch(`${URL}/user/get/all`);
   const users = response.json();
   if (!response.ok) throw Error("failed to fetch data");
   return users;
@@ -39,7 +39,6 @@ export async function fetchDeleteUser(id: string) {
     method: "DELETE",
   });
   if (!response.ok) throw Error("failed to fetch data");
-
   const result = response.json();
   return result;
 }
@@ -51,4 +50,11 @@ export async function fetchUpdateUserWins(name: string) {
   if (!response.ok) throw Error("failed to connect");
   const result = response.json();
   return result;
+}
+
+export async function fetchChallengers() {
+  const response = await fetch(`${URL}/challengers`);
+  const challengers = response.json();
+  if (!response.ok) throw Error("failed to fetch challengers");
+  return challengers;
 }
