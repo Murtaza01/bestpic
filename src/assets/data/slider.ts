@@ -12,6 +12,7 @@ import freedomArea from "../images/freedomArea.jpg";
 import manyBooks from "../images/manyBooks.jpg";
 import sea from "../images/sea.jpg";
 import miniCar from "../images/miniCar.jpg";
+
 const sliderData = [
   {
     img: blueCar,

@@ -3,10 +3,14 @@ import { processError } from "./helpers";
 const URL = "http://localhost:3000/user";
 
 export async function fetchUsers() {
-  const response = await fetch(`${URL}/user/get/all`);
-  const users = response.json();
-  if (!response.ok) throw Error("failed to fetch data");
-  return users;
+  try {
+    const response = await fetch(`${URL}/user/get/all`);
+    const users = response.json();
+    if (!response.ok) throw Error("failed to fetch data");
+    return users;
+  } catch (error) {
+    return processError(error);
+  }
 }
 
 export async function fetchNewUser(data: FormData) {
@@ -22,39 +26,55 @@ export async function fetchNewUser(data: FormData) {
 }
 
 export async function fetchUpdateUser(id: string, data: {}) {
-  const response = await fetch(`${URL}/edit/${id}`, {
-    method: "PATCH",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (!response.ok) throw Error("failed to fetch data");
-  const result = response.json();
-  return result;
+  try {
+    const response = await fetch(`${URL}/edit/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) throw Error("failed to fetch data");
+    const result = response.json();
+    return result;
+  } catch (error) {
+    return processError(error);
+  }
 }
 
 export async function fetchDeleteUser(id: string) {
-  const response = await fetch(`${URL}/delete/${id}`, {
-    method: "DELETE",
-  });
-  if (!response.ok) throw Error("failed to fetch data");
-  const result = response.json();
-  return result;
+  try {
+    const response = await fetch(`${URL}/delete/${id}`, {
+      method: "DELETE",
+    });
+    if (!response.ok) throw Error("failed to fetch data");
+    const result = response.json();
+    return result;
+  } catch (error) {
+    return processError(error);
+  }
 }
 
 export async function fetchUpdateUserWins(name: string) {
-  const response = await fetch(`${URL}/challenge/${name}`, {
-    method: "PATCH",
-  });
-  if (!response.ok) throw Error("failed to connect");
-  const result = response.json();
-  return result;
+  try {
+    const response = await fetch(`${URL}/challenge/${name}`, {
+      method: "PATCH",
+    });
+    if (!response.ok) throw Error("failed to connect");
+    const result = response.json();
+    return result;
+  } catch (error) {
+    return processError(error);
+  }
 }
 
 export async function fetchChallengers() {
-  const response = await fetch(`${URL}/challengers`);
-  const challengers = response.json();
-  if (!response.ok) throw Error("failed to fetch challengers");
-  return challengers;
+  try {
+    const response = await fetch(`${URL}/challengers`);
+    const challengers = response.json();
+    if (!response.ok) throw Error("failed to fetch challengers");
+    return challengers;
+  } catch (error) {
+    return processError(error);
+  }
 }

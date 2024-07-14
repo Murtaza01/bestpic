@@ -2,7 +2,7 @@ import blueCar from "../images/blueCar.jpg";
 import oldMan from "../images/oldMan.jpg";
 import niceView from "../images/niceView.jpg";
 import roman from "../images/roman.jpg";
-const mfData = [
+const challengeData = [
   [
     {
       image: blueCar,
@@ -35,4 +35,4 @@ const mfData = [
   ],
 ];
 
-export default mfData;
+export default challengeData;

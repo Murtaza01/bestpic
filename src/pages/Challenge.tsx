@@ -1,20 +1,18 @@
 import { useState } from "react";
-import mfData from "../assets/data/mohamed_fatima";
 import { shuffle } from "../util/helpers";
-import { useAppDispatch, useAppSelector } from "../app/store";
+import { useAppDispatch } from "../app/store";
 import { incFatima, incMohamed, zeroingScore } from "../app/store/scoreSlice";
-import { fetchChallengers, fetchUpdateUserWins } from "../util/http";
+import challengeData from "../assets/data/challenge";
+import ChallengeResultPage from "./ChallengeResult";
 
 let firstRender = false;
 
-const MvsFPage = () => {
+const ChallengePage = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const dispatch = useAppDispatch();
-  const { score: mohamedScore } = useAppSelector((state) => state.mohamed);
-  const { score: fatimaScore } = useAppSelector((state) => state.fatima);
 
   if (!firstRender) {
-    shuffle(mfData);
+    shuffle(challengeData);
     firstRender = true;
   }
   // if back score = 0
@@ -31,37 +29,15 @@ const MvsFPage = () => {
     setTimeout(() => setCurrentIndex((prev) => prev + 1), 300);
   }
 
-  const show = currentIndex === mfData.length;
+  const endOfChallenge = currentIndex === challengeData.length;
 
-  //TODO: move this into a component and add the logic
-  if (show) {
-    if (fatimaScore > mohamedScore) {
-      (async () => {
-        const result = await fetchUpdateUserWins("fatima");
-        console.log(result);
-      })();
-    } else if (mohamedScore > fatimaScore) {
-      (async () => {
-        const result = await fetchUpdateUserWins("mohamed");
-        console.log(result);
-      })();
-    }
-
-    (async () => {
-      const result = await fetchChallengers();
-      console.log(result);
-    })();
-
-    return (
-      <h1 className="grid h-dvh place-items-center text-4xl">
-        Fatima: ({fatimaScore}) mohamed: ({mohamedScore})
-      </h1>
-    );
+  if (endOfChallenge) {
+    return <ChallengeResultPage />;
   }
 
   return (
     <>
-      {mfData.map((person, index) => {
+      {challengeData.map((person, index) => {
         if (currentIndex === index) {
           return (
             <div key={index} className="h-dvh">
@@ -84,4 +60,4 @@ const MvsFPage = () => {
   );
 };
 
-export default MvsFPage;
+export default ChallengePage;

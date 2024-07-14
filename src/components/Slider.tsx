@@ -11,7 +11,7 @@ const Slider = () => {
       loop={true}
       slidesPerView={1}
       autoplay={{
-        delay: 5000,
+        delay: 4000,
       }}
       fadeEffect={{
         crossFade: true,
@@ -23,7 +23,12 @@ const Slider = () => {
       {sliderData.map(({ img }, index) => {
         return (
           <SwiperSlide key={index}>
-            <img src={img} className="slider-img" alt="" loading="lazy" />
+            <img
+              src={img}
+              className="h-full w-full object-cover"
+              alt=""
+              loading="lazy"
+            />
           </SwiperSlide>
         );
       })}
