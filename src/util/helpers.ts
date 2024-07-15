@@ -17,3 +17,7 @@ export function processError(error: unknown) {
   if (error instanceof Error) return error.message;
   return String(error);
 }
+
+export function capitalize(name: string) {
+  return name.charAt(0).toUpperCase() + name.slice(1);
+}

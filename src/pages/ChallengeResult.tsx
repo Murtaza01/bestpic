@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../app/store";
 import { fetchChallengers, fetchUpdateUserWins } from "../util/http";
-
-type challengers = {
-  name: string;
-  wins: number;
-};
+import PieChart from "../components/PieChart";
+import { challengers } from "../util/types";
 
 const ChallengeResultPage = () => {
   // todo: add useQuery to handle the result of challenge
@@ -28,18 +25,11 @@ const ChallengeResultPage = () => {
   }, []);
 
   return (
-    <div className="flex h-dvh flex-col items-center justify-center text-4xl">
-      <h1>
-        Fatima: ({fatimaScore}) mohamed: ({mohamedScore})
+    <div className="flex h-dvh flex-col items-center justify-center gap-5">
+      <h1 className="text-4xl">
+        {fatimaScore > mohamedScore ? "Fatima Won" : "Mohamed Won"}
       </h1>
-      {challengers &&
-        challengers.map(({ name, wins }, index) => {
-          return (
-            <div key={index}>
-              {name} has {wins} wins
-            </div>
-          );
-        })}
+      {challengers && <PieChart people={challengers} />}
     </div>
   );
 };
