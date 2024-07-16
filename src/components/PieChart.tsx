@@ -1,11 +1,12 @@
 import { Pie } from "react-chartjs-2";
-import { Chart as Chartjs, ArcElement, Legend, Title, Tooltip } from "chart.js";
+import { Chart, ArcElement, Legend, Title, Tooltip } from "chart.js";
 import { capitalize } from "../util/helpers";
 import { challengers } from "../util/types";
-Chartjs.register(ArcElement, Legend, Tooltip, Title);
+
+Chart.register(ArcElement, Legend, Tooltip, Title);
 
 type props = {
-  people: challengers[];
+  challengers: challengers[];
 };
 
 const options = {
@@ -20,13 +21,13 @@ const options = {
     },
   },
 };
-const PieChart = ({ people }: props) => {
+const PieChart = ({ challengers }: props) => {
   const data = {
-    labels: people.map((person) => capitalize(person.name)),
+    labels: challengers.map((challenger) => capitalize(challenger.name)),
     datasets: [
       {
         label: " Wins",
-        data: people.map((person) => person.wins),
+        data: challengers.map((challenger) => challenger.wins),
         backgroundColor: ["darkslateblue", "darkred"],
         hoverOffset: 6,
       },

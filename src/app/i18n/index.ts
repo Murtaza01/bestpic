@@ -1,19 +1,14 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
-
+import arTrans from "./locals/ar.json";
+import enTrans from "./locals/en.json";
 const resources = {
   en: {
-    translation: {
-      Welcome: "Welcome to React and react-i18next",
-      bestPic: "Best picture",
-    },
+    translation: enTrans,
   },
   ar: {
-    translation: {
-      Welcome: "اهلا بك في رياكت و رياكت نكست",
-      bestPic: "افضل صورة",
-    },
+    translation: arTrans,
   },
 };
 

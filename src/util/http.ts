@@ -69,12 +69,8 @@ export async function fetchUpdateUserWins(name: string) {
 }
 
 export async function fetchChallengers() {
-  try {
-    const response = await fetch(`${URL}/challengers`);
-    const challengers = response.json();
-    if (!response.ok) throw Error("failed to fetch challengers");
-    return challengers;
-  } catch (error) {
-    return processError(error);
-  }
+  const response = await fetch(`${URL}/challengers`);
+  const challengers = response.json();
+  if (!response.ok) throw Error("failed to fetch challengers");
+  return challengers;
 }

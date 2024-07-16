@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 const Hero = () => {
   const { t } = useTranslation();
   return (
-    <main className="relative h-dvh">
+    <main className="relative h-screen">
       <Slider />
       <div className="absolute inset-0 z-10 flex flex-col bg-white/25 backdrop-blur-[2px]">
         <div className="flex-1 px-4 text-center font-semibold">
