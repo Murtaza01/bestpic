@@ -1,6 +1,6 @@
 // import { useEffect, useState } from "react";
 import { useAppSelector } from "../app/store";
-import { fetchChallengers, fetchUpdateUserWins } from "../util/http";
+import { fetchChallengers } from "../util/http";
 import PieChart from "../components/PieChart";
 import { challengers } from "../util/types";
 import { useQuery } from "@tanstack/react-query";
