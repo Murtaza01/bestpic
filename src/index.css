@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* will use this if it support it, if not it will use the default 100vh */
+@layer utilities {
+  .h-screen {
+    height: 100dvh;
+  }
+}
+
 .loginBg {
   background:
     url("./assets/images/loginBg.jpg") no-repeat center,

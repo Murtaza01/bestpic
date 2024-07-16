@@ -1,33 +1,34 @@
 // import { useEffect, useState } from "react";
 import { useAppSelector } from "../app/store";
-import { fetchChallengers } from "../util/http";
+import { fetchChallengers, fetchUpdateUserWins } from "../util/http";
 import PieChart from "../components/PieChart";
-import { challengers } from "../util/types";
-import { useQuery } from "@tanstack/react-query";
+// import { challengers } from "../util/types";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 const ChallengeResultPage = () => {
-  const { data, error, isPending, isError } = useQuery({
+  const { score: mohamedScore } = useAppSelector((state) => state.mohamed);
+  const { score: fatimaScore } = useAppSelector((state) => state.fatima);
+  const {
+    data: challengers,
+    error,
+    isPending,
+    isError,
+  } = useQuery({
     queryKey: ["challengers"],
     queryFn: fetchChallengers,
   });
-  // todo: add useQuery to handle the result of challenge
-  // const [challengers, setChallengers] = useState<challengers[] | undefined>();
-  const { score: mohamedScore } = useAppSelector((state) => state.mohamed);
-  const { score: fatimaScore } = useAppSelector((state) => state.fatima);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     if (fatimaScore > mohamedScore) {
-  //       const result = await fetchUpdateUserWins("fatima");
-  //       console.log(result);
-  //     } else if (mohamedScore > fatimaScore) {
-  //       const result = await fetchUpdateUserWins("mohamed");
-  //       console.log(result);
-  //     }
-  //     const result = await fetchChallengers();
-  //     if (result !== "Failed to fetch") setChallengers(result);
-  //   })();
-  // }, []);
+  const { mutate } = useMutation({
+    mutationFn: (name: string) => {
+      return fetchUpdateUserWins(name);
+    },
+  });
+
+  useEffect(() => {
+    if (fatimaScore > mohamedScore) mutate("fatima");
+    if (mohamedScore > fatimaScore) mutate("mohamed");
+  }, []);
 
   if (isPending) {
     return (
@@ -44,9 +45,7 @@ const ChallengeResultPage = () => {
       </h1>
     );
   }
-  console.log(isError, isPending, data);
 
-  const challengers: challengers[] = data;
   return (
     <div className="flex h-dvh flex-col items-center justify-center gap-5">
       <h1 className="text-4xl">
