@@ -17,7 +17,7 @@ const Hero = () => {
               adding your picture and enter a challenge with other people
             </p>
             <Link
-              to={"mohamed-vs-fatima"}
+              to={"challenge"}
               className="rounded-sm bg-white/60 px-5 py-1 backdrop-blur-sm"
             >
               Participate Now

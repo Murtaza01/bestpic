@@ -1,12 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  mohamed: {
-    score: 0,
-  },
-  fatima: {
-    score: 0,
-  },
+  mohamedScore: 0,
+  fatimaScore: 0,
 };
 
 const scoreSlice = createSlice({
@@ -14,14 +10,14 @@ const scoreSlice = createSlice({
   initialState,
   reducers: {
     incMohamed(state) {
-      state.mohamed.score++;
+      state.mohamedScore++;
     },
     incFatima(state) {
-      state.fatima.score++;
+      state.fatimaScore++;
     },
     zeroingScore(state) {
-      state.fatima.score = 0;
-      state.mohamed.score = 0;
+      state.fatimaScore = 0;
+      state.mohamedScore = 0;
     },
   },
 });

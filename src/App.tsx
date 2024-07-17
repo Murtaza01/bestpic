@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     element: <LoginPage />,
   },
   {
-    path: "/mohamed-vs-fatima",
+    path: "/challenge",
     element: <ChallengePage />,
   },
 ]);

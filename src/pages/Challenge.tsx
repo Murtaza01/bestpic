@@ -10,7 +10,6 @@ let firstRender = false;
 const ChallengePage = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const dispatch = useAppDispatch();
-
   if (!firstRender) {
     shuffle(challengeData);
     firstRender = true;
