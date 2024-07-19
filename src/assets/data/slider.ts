@@ -13,7 +13,7 @@ import manyBooks from "../images/manyBooks.jpg";
 import sea from "../images/sea.jpg";
 import miniCar from "../images/miniCar.jpg";
 
-const sliderData = [
+const sliderImages = [
   {
     img: blueCar,
   },
@@ -62,4 +62,4 @@ const sliderData = [
   },
 ];
 
-export default sliderData;
+export default sliderImages;

@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
-import sliderData from "../assets/data/slider";
+import sliderImages from "../assets/data/slider";
 
 const Slider = () => {
   return (
@@ -20,7 +20,7 @@ const Slider = () => {
       className={`size-full`}
       dir="ltr"
     >
-      {sliderData.map(({ img }, index) => {
+      {sliderImages.map(({ img }, index) => {
         return (
           <SwiperSlide key={index}>
             <img

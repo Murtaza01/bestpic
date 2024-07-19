@@ -2,7 +2,9 @@ import blueCar from "../images/blueCar.jpg";
 import oldMan from "../images/oldMan.jpg";
 import niceView from "../images/niceView.jpg";
 import roman from "../images/roman.jpg";
-const challengeData = [
+import doorView from "../images/doorView.jpg";
+import books from "../images/books.jpg";
+const challengeImages = [
   [
     {
       image: blueCar,
@@ -33,6 +35,16 @@ const challengeData = [
       id: "mohamed",
     },
   ],
+  [
+    {
+      image: doorView,
+      id: "fatima",
+    },
+    {
+      image: books,
+      id: "mohamed",
+    },
+  ],
 ];
 
-export default challengeData;
+export default challengeImages;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { shuffle } from "../util/helpers";
 import { useAppDispatch } from "../app/store";
 import { incFatima, incMohamed, zeroingScore } from "../app/store/scoreSlice";
-import challengeData from "../assets/data/challenge";
+import challengeImages from "../assets/data/challenge";
 import ChallengeResultPage from "./ChallengeResult";
 
 let firstRender = false;
@@ -11,7 +11,7 @@ const ChallengePage = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const dispatch = useAppDispatch();
   if (!firstRender) {
-    shuffle(challengeData);
+    shuffle(challengeImages);
     firstRender = true;
   }
   // if back score = 0
@@ -28,7 +28,7 @@ const ChallengePage = () => {
     setTimeout(() => setCurrentIndex((prev) => prev + 1), 300);
   }
 
-  const endOfChallenge = currentIndex === challengeData.length;
+  const endOfChallenge = currentIndex === challengeImages.length;
 
   if (endOfChallenge) {
     return <ChallengeResultPage />;
@@ -36,7 +36,7 @@ const ChallengePage = () => {
 
   return (
     <>
-      {challengeData.map((person, index) => {
+      {challengeImages.map((person, index) => {
         if (currentIndex === index) {
           return (
             <div key={index} className="h-dvh">

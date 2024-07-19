@@ -1,12 +1,12 @@
 import { Pie } from "react-chartjs-2";
 import { Chart, ArcElement, Legend, Title, Tooltip } from "chart.js";
 import { capitalize } from "../util/helpers";
-import { challengers } from "../util/types";
+import { challenge } from "../util/types";
 
 Chart.register(ArcElement, Legend, Tooltip, Title);
 
 type props = {
-  challengers: challengers[];
+  challengeData: challenge;
 };
 
 const options = {
@@ -21,14 +21,18 @@ const options = {
     },
   },
 };
-const PieChart = ({ challengers }: props) => {
+const PieChart = ({ challengeData }: props) => {
+  const challengers = challengeData[0].mvsf;
+  const names = Object.keys(challengers);
+  const wins = Object.values(challengers);
+
   const data = {
-    labels: challengers.map((challenger) => capitalize(challenger.name)),
+    labels: names.map((name) => capitalize(name.replace("Wins", ""))),
     datasets: [
       {
         label: " Wins",
-        data: challengers.map((challenger) => challenger.wins),
-        backgroundColor: ["darkslateblue", "darkred"],
+        data: wins.map((win) => win),
+        backgroundColor: ["darkslateblue", "darkred", "gray"],
         hoverOffset: 6,
       },
     ],

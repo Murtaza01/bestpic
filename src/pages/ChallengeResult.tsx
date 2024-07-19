@@ -8,7 +8,7 @@ const ChallengeResultPage = () => {
   const { mohamedScore } = useAppSelector((state) => state);
   const { fatimaScore } = useAppSelector((state) => state);
   const {
-    data: challengers,
+    data: challengeData,
     isPending,
     isError,
   } = useQuery({
@@ -16,25 +16,30 @@ const ChallengeResultPage = () => {
     queryFn: fetchChallengers,
   });
 
-  const { mutate } = useMutation({
+  const { mutate, isSuccess } = useMutation({
     mutationFn: (name: string) => {
       return fetchUpdateUserWins(name);
     },
   });
 
+  // to reuse in this component
+  const fatimaWon = fatimaScore > mohamedScore;
+  const mohamedWon = mohamedScore > fatimaScore;
+
   useEffect(() => {
-    if (fatimaScore > mohamedScore) mutate("fatima");
-    if (mohamedScore > fatimaScore) mutate("mohamed");
+    if (fatimaWon) mutate("fatima");
+    else if (mohamedWon) mutate("mohamed");
+    else mutate("tie");
   }, []);
-  // handle tie
+
   return (
     <div className="flex h-dvh flex-col items-center justify-center gap-5">
       <h1 className="text-4xl">
-        {fatimaScore > mohamedScore ? "Fatima Won" : "Mohamed Won"}
+        {fatimaWon ? "Fatima Won" : mohamedWon ? "Mohamed Won" : "Its a Tie"}
       </h1>
       {isPending && <h1>Loading...</h1>}
       {isError && <h1>Failed to get the results, please try again</h1>}
-      {challengers && <PieChart challengers={challengers} />}
+      {challengeData && isSuccess && <PieChart challengeData={challengeData} />}
     </div>
   );
 };
