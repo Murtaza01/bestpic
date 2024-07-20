@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Slider from "../components/Slider";
 import { FaChevronDown } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import Box from "../components/Box";
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -10,7 +11,7 @@ const Hero = () => {
       <Slider />
       <div className="absolute inset-0 z-10 flex flex-col bg-white/25 backdrop-blur-[2px]">
         <div className="flex-1 px-4 text-center font-semibold">
-          <div className="flex h-[95%] flex-col items-center justify-center gap-10">
+          <Box style="h-[95%] gap-10">
             <h1 className="font-serif text-5xl uppercase">{t("bestPic")}</h1>
             <p className="text-lg">
               Be the judge of the best pictures shared by people, participate by
@@ -22,7 +23,7 @@ const Hero = () => {
             >
               Participate Now
             </Link>
-          </div>
+          </Box>
         </div>
         <span className="mx-auto w-[90%] text-center font-mono font-bold">
           or see our Challenges{" "}
