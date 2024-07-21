@@ -20,7 +20,7 @@ export async function fetchNewUser(data: FormData) {
       body: data,
     });
   } catch (error) {
-    // returns the error message if it exits
+    // returns the error message if it exist
     return processError(error);
   }
 }

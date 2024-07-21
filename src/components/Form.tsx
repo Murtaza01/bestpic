@@ -95,7 +95,7 @@ const From = () => {
           file
         </span>
       )}
-      <button className="rounded-md bg-black/40 px-10 py-2 backdrop-blur-sm">
+      <button className="rounded-md bg-black/50 px-10 py-2 hover:bg-green-500">
         {submitting ? "Submitting..." : "Submit"}
       </button>
     </form>
