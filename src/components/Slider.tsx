@@ -25,7 +25,7 @@ const Slider = () => {
           <SwiperSlide key={index}>
             <img
               src={img}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover opacity-90"
               alt=""
               loading="lazy"
             />

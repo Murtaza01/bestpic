@@ -43,13 +43,13 @@ const From = () => {
   }
   return (
     <form
-      className="relative flex w-full flex-1 flex-col items-center justify-center gap-10"
+      className="relative flex flex-1 flex-col items-center justify-center gap-10"
       method="post"
       encType="multipart/form-data"
       onSubmit={handleSubmit}
     >
       {error && (
-        <span className="absolute top-[10%] w-[70%] bg-rose-600 px-2 py-3 text-center">
+        <span className="absolute top-[10%] w-[70%] bg-red-600 px-2 py-3 text-center">
           Failed To Fetch, Please try again later
         </span>
       )}
@@ -91,7 +91,7 @@ const From = () => {
 
       {fileName === "" && (
         <span className="">
-          <MdError className="inline text-xl text-rose-500" /> put your godman
+          <MdError className="inline text-xl text-yellow-400" /> put your godman
           file
         </span>
       )}

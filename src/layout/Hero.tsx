@@ -5,15 +5,13 @@ import Box from "../components/Box";
 
 const Hero = () => {
   return (
-    <main className="relative h-screen text-neutral-900">
+    <main className="relative h-screen text-neutral-800">
       <Slider />
-      <div className="absolute inset-0 z-10 flex flex-col bg-white/25 backdrop-blur-[2px]">
+      <div className="absolute inset-0 z-10 flex flex-col bg-white/20 backdrop-blur-[2px]">
         <div className="flex-1 px-4 text-center font-semibold">
           <Box style="h-[95%] gap-10">
-            <h1 className="text-shadow font-serif text-5xl uppercase">
-              best Picture
-            </h1>
-            <p className="text-lg">
+            <h1 className="font-heading text-5xl">Best Picture</h1>
+            <p className="font-paragraph text-lg">
               Be the judge of the best pictures shared by people, participate by
               adding your picture and enter a challenge with other people
             </p>
