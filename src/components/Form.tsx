@@ -56,7 +56,7 @@ const From = () => {
 
       <div className="relative">
         <input
-          className="peer block h-8 w-64 border-b-2 border-black/50 bg-transparent placeholder-transparent outline-none"
+          className="peer block h-8 w-64 border-b-2 border-black bg-transparent placeholder-transparent outline-none"
           type="text"
           name="name"
           id="name"
@@ -95,7 +95,7 @@ const From = () => {
           file
         </span>
       )}
-      <button className="rounded-md bg-black/50 px-10 py-2 hover:bg-green-500">
+      <button className="rounded-md bg-black/20 px-10 py-2">
         {submitting ? "Submitting..." : "Submit"}
       </button>
     </form>
