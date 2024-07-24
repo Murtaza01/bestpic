@@ -1,9 +1,17 @@
-import { Link } from "react-router-dom";
 import Slider from "../components/Slider";
-import { FaChevronDown } from "react-icons/fa";
 import Box from "../components/Box";
+import { SyntheticEvent } from "react";
 
 const Hero = () => {
+  function scrollToView(e: SyntheticEvent) {
+    e.preventDefault();
+    const target = e.target as HTMLAnchorElement;
+    const id = target.hash.replace("#", "");
+    const element = document.getElementById(id);
+    element?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }
   return (
     <main className="relative h-screen text-neutral-800">
       <Slider />
@@ -15,18 +23,15 @@ const Hero = () => {
               Be the judge of the best pictures shared by people, participate by
               adding your picture and enter a challenge with other people
             </p>
-            <Link
-              to={"challenge"}
-              className="rounded-sm bg-white/25 px-5 py-1 backdrop-blur-sm"
+            <a
+              href="#challenge"
+              onClick={scrollToView}
+              className="rounded-sm bg-white/30 px-5 py-1 font-mono backdrop-blur-md"
             >
-              Participate Now
-            </Link>
+              See Our Challenges
+            </a>
           </Box>
         </div>
-        <span className="mx-auto w-[90%] text-center font-mono font-bold">
-          or see our Challenges{" "}
-          <FaChevronDown className="inline animate-bounce text-xl" />{" "}
-        </span>
       </div>
     </main>
   );
