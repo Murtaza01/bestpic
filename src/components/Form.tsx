@@ -1,10 +1,14 @@
 import { SyntheticEvent, useState } from "react";
-import { fetchNewUser } from "../util/http";
+import { fetchLogin } from "../util/http";
 import { MdCloudUpload } from "react-icons/md";
 import { MdError } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-const From = () => {
+type props = {
+  username:string,
+}
+
+const From = ({username}:props) => {
   const [fileName, setFileName] = useState<string>();
   const [error, setError] = useState<string | undefined>();
   const [submitting, setSubmitting] = useState<boolean | undefined>();
@@ -21,15 +25,14 @@ const From = () => {
     }
     const target = e.target as HTMLFormElement;
     const formData = new FormData(target);
-    const error = await fetchNewUser(formData);
-
-    if (!error) {
-      console.log("you're logged in");
-      // localStorage to save the user login in and then show the user instead of login text
+    const response = await fetchLogin(formData);
+    
+    if (response.token) {
+      localStorage.setItem("token",response.token)
       setSubmitting(false);
       navigate("..");
     } else {
-      setError(error);
+      setError(response);
       setSubmitting(false);
     }
   }
@@ -59,6 +62,7 @@ const From = () => {
           className="peer block h-8 w-64 border-b-2 border-black bg-transparent placeholder-transparent outline-none"
           type="text"
           name="name"
+          defaultValue={username ?? username}
           id="name"
           placeholder="Name"
           required

@@ -1,4 +1,4 @@
-import { useAppSelector } from "../app/store";
+import { useAppSelector } from "../store";
 import { fetchChallengers, fetchUpdateUserWins } from "../util/http";
 import PieChart from "../components/PieChart";
 import { useMutation, useQuery } from "@tanstack/react-query";

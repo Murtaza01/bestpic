@@ -4,6 +4,7 @@ type props = {
   style?: string;
   children: ReactNode;
 };
+
 const Box = ({ style, children }: props) => {
   return (
     <div

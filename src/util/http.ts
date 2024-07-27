@@ -1,10 +1,10 @@
 import { processError } from "./helpers";
 
-const URL = "http://localhost:3000/user";
-
+const URL = "http://localhost:3000";
+// TODO: change the routes according to the backend
 export async function fetchUsers() {
   try {
-    const response = await fetch(`${URL}/user/get/all`);
+    const response = await fetch(`${URL}/users`);
     const users = response.json();
     if (!response.ok) throw Error("failed to fetch data");
     return users;
@@ -13,16 +13,31 @@ export async function fetchUsers() {
   }
 }
 
-export async function fetchNewUser(data: FormData) {
+export async function fetchLogin(data: FormData) {
   try {
-    await fetch(`${URL}/new`, {
+    const response = await fetch(`${URL}/onlineUsers/login`, {
       method: "POST",
       body: data,
     });
+    const resData = await response.json()
+    
+    return resData
   } catch (error) {
     // returns the error message if it exist
     return processError(error);
   }
+}
+
+export async function fetchToken(){
+  const token = localStorage.getItem("token")
+  const response = await fetch(`${URL}/onlineUsers/token`,{
+    method:"POST",
+    headers:{
+      'Authorization':`Bearer ${token}`
+    }
+  })
+  const resData = await response.json()
+  return resData
 }
 
 export async function fetchUpdateUser(id: string, data: {}) {

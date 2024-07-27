@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { shuffle } from "../util/helpers";
-import { useAppDispatch } from "../app/store";
-import { incFatima, incMohamed, zeroingScore } from "../app/store/scoreSlice";
+import { useAppDispatch } from "../store";
+import { incFatima, incMohamed, zeroingScore } from "../store/scoreSlice";
 import challengeImages from "../assets/data/challenge";
 import ChallengeResultPage from "./ChallengeResult";
 
