@@ -20,6 +20,7 @@ export async function fetchLogin(data: FormData) {
       body: data,
     });
     const resData = await response.json()
+    console.log(resData);
     
     return resData
   } catch (error) {
@@ -37,6 +38,8 @@ export async function fetchToken(){
     }
   })
   const resData = await response.json()
+  console.log(resData);
+
   return resData
 }
 

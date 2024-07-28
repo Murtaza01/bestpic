@@ -7,6 +7,7 @@ import { fetchToken } from "../util/http";
 
 type userData = {
   name:string
+  imageUrl:string
 }
 
 const LoginPage = () => {
@@ -19,10 +20,10 @@ const LoginPage = () => {
     if(token){
       console.log(" token exist");
       (async ()=>{
-       const user = await fetchToken()
-       setData(user)
+       const resData = await fetchToken()
+       setData(resData)
       })()
-    }
+    } 
     
   },[])
 
@@ -31,7 +32,7 @@ const LoginPage = () => {
       <Link to={".."} className="w-max px-2 py-1">
         <MdKeyboardBackspace className="text-4xl text-black" />
       </Link>
-      <From username={data ? data.name : ""}/>
+      <From username={data ? data.name : ""} imageUrl={data ? data.imageUrl : ""} />
     </div>
   );
 };

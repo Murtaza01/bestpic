@@ -6,9 +6,10 @@ import { useNavigate } from "react-router-dom";
 
 type props = {
   username:string,
+  imageUrl:string
 }
 
-const From = ({username}:props) => {
+const From = ({username,imageUrl}:props) => {
   const [fileName, setFileName] = useState<string>();
   const [error, setError] = useState<string | undefined>();
   const [submitting, setSubmitting] = useState<boolean | undefined>();
@@ -36,6 +37,9 @@ const From = ({username}:props) => {
       setSubmitting(false);
     }
   }
+
+  console.log(imageUrl);
+  
 
   function handleChange(e: SyntheticEvent) {
     const target = e.target as HTMLInputElement;
@@ -75,7 +79,8 @@ const From = ({username}:props) => {
         </label>
       </div>
 
-      <div className="max-w-96 px-4">
+      {imageUrl ? <img src={imageUrl} className="size-44" alt="" /> 
+      : ( <div className="max-w-96 px-4">
         <label
           htmlFor="image"
           className={`flex w-full cursor-pointer flex-wrap items-center justify-center gap-2 overflow-hidden rounded-sm px-2 py-1 text-center ${fileName ? "bg-green-600" : "bg-rose-600"}`}
@@ -91,7 +96,7 @@ const From = ({username}:props) => {
             onChange={handleChange}
           />
         </label>
-      </div>
+      </div> )}
 
       {fileName === "" && (
         <span className="">
