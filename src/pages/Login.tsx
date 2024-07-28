@@ -4,14 +4,11 @@ import { MdKeyboardBackspace } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { getToken } from "../util/helpers";
 import { fetchToken } from "../util/http";
+import { LoggedUserData } from "../util/types";
 
-type userData = {
-  name:string
-  imageUrl:string
-}
 
 const LoginPage = () => {
-  const [data,setData] = useState<userData>()
+  const [data,setData] = useState<LoggedUserData>()
 
   useEffect(()=>{
     const token = getToken()
@@ -32,7 +29,7 @@ const LoginPage = () => {
       <Link to={".."} className="w-max px-2 py-1">
         <MdKeyboardBackspace className="text-4xl text-black" />
       </Link>
-      <From username={data ? data.name : ""} imageUrl={data ? data.imageUrl : ""} />
+      <From data={data && data} />
     </div>
   );
 };

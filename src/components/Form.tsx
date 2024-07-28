@@ -1,15 +1,15 @@
 import { SyntheticEvent, useState } from "react";
-import { fetchLogin } from "../util/http";
+import { fetchDeleteUser, fetchLogin } from "../util/http";
 import { MdCloudUpload } from "react-icons/md";
 import { MdError } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { LoggedUserData } from "../util/types";
 
 type props = {
-  username:string,
-  imageUrl:string
-}
+  data?: LoggedUserData;
+};
 
-const From = ({username,imageUrl}:props) => {
+const From = ({ data }: props) => {
   const [fileName, setFileName] = useState<string>();
   const [error, setError] = useState<string | undefined>();
   const [submitting, setSubmitting] = useState<boolean | undefined>();
@@ -27,9 +27,9 @@ const From = ({username,imageUrl}:props) => {
     const target = e.target as HTMLFormElement;
     const formData = new FormData(target);
     const response = await fetchLogin(formData);
-    
+
     if (response.token) {
-      localStorage.setItem("token",response.token)
+      localStorage.setItem("token", response.token);
       setSubmitting(false);
       navigate("..");
     } else {
@@ -38,9 +38,6 @@ const From = ({username,imageUrl}:props) => {
     }
   }
 
-  console.log(imageUrl);
-  
-
   function handleChange(e: SyntheticEvent) {
     const target = e.target as HTMLInputElement;
     if (target.files) {
@@ -48,6 +45,20 @@ const From = ({username,imageUrl}:props) => {
       setFileName(name);
     }
   }
+
+  async function handleClick(){
+    const results = await fetchDeleteUser()
+    console.log(results);
+    
+    if(!(results instanceof Error)){
+      console.log("user got deleted");
+      localStorage.clear()
+      return navigate("..")
+    }
+  }
+
+  
+  
   return (
     <form
       className="relative flex flex-1 flex-col items-center justify-center gap-10"
@@ -66,7 +77,7 @@ const From = ({username,imageUrl}:props) => {
           className="peer block h-8 w-64 border-b-2 border-black bg-transparent placeholder-transparent outline-none"
           type="text"
           name="name"
-          defaultValue={username ?? username}
+          defaultValue={data?.name}
           id="name"
           placeholder="Name"
           required
@@ -79,24 +90,27 @@ const From = ({username,imageUrl}:props) => {
         </label>
       </div>
 
-      {imageUrl ? <img src={imageUrl} className="size-44" alt="" /> 
-      : ( <div className="max-w-96 px-4">
-        <label
-          htmlFor="image"
-          className={`flex w-full cursor-pointer flex-wrap items-center justify-center gap-2 overflow-hidden rounded-sm px-2 py-1 text-center ${fileName ? "bg-green-600" : "bg-rose-600"}`}
-        >
-          <MdCloudUpload className="text-xl" />
-          {fileName ? fileName : "Upload Your Image"}
-          <input
-            className="hidden"
-            type="file"
-            name="image"
-            id="image"
-            accept="image/*"
-            onChange={handleChange}
-          />
-        </label>
-      </div> )}
+      {data?.imageUrl ? (
+        <img src={data.imageUrl} className="size-44" alt="" />
+      ) : (
+        <div className="max-w-96 px-4">
+          <label
+            htmlFor="image"
+            className={`flex w-full cursor-pointer flex-wrap items-center justify-center gap-2 overflow-hidden rounded-sm px-2 py-1 text-center ${fileName ? "bg-green-600" : "bg-rose-600"}`}
+          >
+            <MdCloudUpload className="text-xl" />
+            {fileName ? fileName : "Upload Your Image"}
+            <input
+              className="hidden"
+              type="file"
+              name="image"
+              id="image"
+              accept="image/*"
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+      )}
 
       {fileName === "" && (
         <span className="">
@@ -104,9 +118,13 @@ const From = ({username,imageUrl}:props) => {
           file
         </span>
       )}
-      <button className="rounded-md bg-black/20 px-10 py-2">
-        {submitting ? "Submitting..." : "Submit"}
-      </button>
+      {data?.name ? (
+        <button onClick={handleClick} className="rounded-md bg-red-500/50 px-10 py-2">Delete</button>
+      ) : (
+        <button className="rounded-md bg-black/20 px-10 py-2">
+          {submitting ? "Submitting..." : "Submit"}
+        </button>
+      )}
     </form>
   );
 };

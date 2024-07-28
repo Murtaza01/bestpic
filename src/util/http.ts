@@ -1,6 +1,8 @@
 import { processError } from "./helpers";
 
 const URL = "http://localhost:3000";
+const token = localStorage.getItem("token")
+
 // TODO: change the routes according to the backend
 export async function fetchUsers() {
   try {
@@ -30,7 +32,6 @@ export async function fetchLogin(data: FormData) {
 }
 
 export async function fetchToken(){
-  const token = localStorage.getItem("token")
   const response = await fetch(`${URL}/onlineUsers/token`,{
     method:"POST",
     headers:{
@@ -38,9 +39,23 @@ export async function fetchToken(){
     }
   })
   const resData = await response.json()
-  console.log(resData);
-
   return resData
+}
+
+export async function fetchDeleteUser() {
+  try {
+    const response = await fetch(`${URL}/onlineUsers/deleteUser`, {
+      method: "DELETE",
+      headers:{
+         'Authorization':`Bearer ${token}`
+      }
+    });
+    if (!response.ok) throw Error("failed to fetch data");
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return error
+  }
 }
 
 export async function fetchUpdateUser(id: string, data: {}) {
@@ -60,18 +75,7 @@ export async function fetchUpdateUser(id: string, data: {}) {
   }
 }
 
-export async function fetchDeleteUser(id: string) {
-  try {
-    const response = await fetch(`${URL}/delete/${id}`, {
-      method: "DELETE",
-    });
-    if (!response.ok) throw Error("failed to fetch data");
-    const result = response.json();
-    return result;
-  } catch (error) {
-    return processError(error);
-  }
-}
+
 
 export async function fetchUpdateUserWins(name: string) {
   try {
