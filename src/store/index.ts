@@ -1,12 +1,19 @@
-import { configureStore } from "@reduxjs/toolkit";
+import {  combineReducers, configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import { scoreReducer } from "./scoreSlice";
+import { tokenReducer } from "./tokenSlice";
 
-const store = configureStore({
-  reducer: scoreReducer,
+
+const reducer = combineReducers({
+  score:scoreReducer,
+  token:tokenReducer
+})
+
+export const store = configureStore({
+  reducer,
 });
 
-export default store;
+
 
 // for typescript
 type RootState = ReturnType<typeof store.getState>;

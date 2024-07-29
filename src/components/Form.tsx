@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from "react";
+import {  SyntheticEvent, useState } from "react";
 import { fetchDeleteUser, fetchLogin } from "../util/http";
 import { MdCloudUpload } from "react-icons/md";
 import { MdError } from "react-icons/md";
@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { LoggedUserData } from "../util/types";
 
 type props = {
-  data?: LoggedUserData;
+  data: LoggedUserData;
 };
 
 const From = ({ data }: props) => {
@@ -14,7 +14,6 @@ const From = ({ data }: props) => {
   const [error, setError] = useState<string | undefined>();
   const [submitting, setSubmitting] = useState<boolean | undefined>();
   const navigate = useNavigate();
-
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
     setSubmitting(true);
@@ -53,11 +52,11 @@ const From = ({ data }: props) => {
     if(!(results instanceof Error)){
       console.log("user got deleted");
       localStorage.clear()
-      return navigate("..")
+      return navigate("/")
     }
   }
 
-  
+
   
   return (
     <form
@@ -77,7 +76,7 @@ const From = ({ data }: props) => {
           className="peer block h-8 w-64 border-b-2 border-black bg-transparent placeholder-transparent outline-none"
           type="text"
           name="name"
-          defaultValue={data?.name}
+          defaultValue={data.name}
           id="name"
           placeholder="Name"
           required
@@ -90,7 +89,7 @@ const From = ({ data }: props) => {
         </label>
       </div>
 
-      {data?.imageUrl ? (
+      {data.imageUrl ? (
         <img src={data.imageUrl} className="size-44" alt="" />
       ) : (
         <div className="max-w-96 px-4">
@@ -118,7 +117,7 @@ const From = ({ data }: props) => {
           file
         </span>
       )}
-      {data?.name ? (
+      {data.name ? (
         <button onClick={handleClick} className="rounded-md bg-red-500/50 px-10 py-2">Delete</button>
       ) : (
         <button className="rounded-md bg-black/20 px-10 py-2">

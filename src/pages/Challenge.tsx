@@ -18,7 +18,7 @@ const ChallengePage = () => {
   window.onpopstate = () => {
     dispatch(zeroingScore());
   };
-
+  
   function handleClick(id: string) {
     if (id === "mohamed") {
       dispatch(incMohamed());
