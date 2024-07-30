@@ -1,5 +1,6 @@
 import { LuLoader2 } from "react-icons/lu";
 import Box from "./Box";
+
 type props = {
   msg: string;
 };

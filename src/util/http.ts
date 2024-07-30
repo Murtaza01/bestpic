@@ -2,7 +2,7 @@ import storage from "redux-persist/lib/storage";
 import { processError } from "./helpers";
 
 const URL = "http://localhost:3000";
-// const token = localStorage.getItem("token")
+
 
 // TODO: change the routes according to the backend
 export async function fetchUsers() {

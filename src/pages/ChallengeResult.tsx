@@ -7,8 +7,8 @@ import Loader from "../components/Loader";
 import Error from "../components/Error";
 
 const ChallengeResultPage = () => {
-  const { mohamedScore } = useAppSelector((state) => state);
-  const { fatimaScore } = useAppSelector((state) => state);
+  const mohamedScore = useAppSelector((state) => state.score.mohamed);
+  const fatimaScore = useAppSelector((state) => state.score.fatima);
   const {
     data: challengeData,
     isPending,

@@ -1,12 +1,12 @@
 import { Pie } from "react-chartjs-2";
 import { Chart, ArcElement, Legend, Title, Tooltip } from "chart.js";
 import { capitalize } from "../util/helpers";
-import { challenge } from "../util/types";
+import { Challenge} from "../util/types";
 
 Chart.register(ArcElement, Legend, Tooltip, Title);
 
 type props = {
-  challengeData: challenge;
+  challengeData: Challenge;
 };
 
 const options = {

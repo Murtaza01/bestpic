@@ -22,7 +22,3 @@ export function capitalize(name: string) {
   return name.charAt(0).toUpperCase() + name.slice(1);
 }
 
-export function getToken(){
-  const token = localStorage.getItem("token")
-  if(token) return token
-}

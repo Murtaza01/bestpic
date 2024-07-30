@@ -4,11 +4,11 @@ import { MdCloudUpload } from "react-icons/md";
 import { MdError } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { LoggedUserData } from "../util/types";
-import { useAppDispatch, useAppSelector } from "../store";
+import { useAppDispatch } from "../store";
 import { clear, save } from "../store/tokenSlice";
 
 type props = {
-  data?: LoggedUserData;
+  data: LoggedUserData;
 };
 
 const From = ({ data }: props) => {
@@ -17,8 +17,8 @@ const From = ({ data }: props) => {
   const [submitting, setSubmitting] = useState<boolean | undefined>();
   const navigate = useNavigate();
   const dispatch = useAppDispatch()
-  const token = useAppSelector(state=>state.token.value)
-
+ 
+  
 
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
@@ -34,7 +34,6 @@ const From = ({ data }: props) => {
     const response = await fetchLogin(formData);
 
     if (response.token) {
-      localStorage.setItem("token", response.token);
       setSubmitting(false);
       dispatch(save(response.token))
       navigate("..");
@@ -53,14 +52,12 @@ const From = ({ data }: props) => {
   }
 
   async function handleClick(){
-    const results = await fetchDeleteUser(token)
+    const results = await fetchDeleteUser()
     console.log(results);
-    
     if(!(results instanceof Error)){
       console.log("user got deleted");
-      localStorage.clear()
       dispatch(clear())
-      return navigate("/")
+      return navigate("..")
     }
   }
 
@@ -98,7 +95,7 @@ const From = ({ data }: props) => {
         </label>
       </div>
 
-      {data ? (
+      {data.imageUrl ? (
         <img src={data?.imageUrl} className="size-44" alt="" />
       ) : (
         <div className="max-w-96 px-4">
@@ -126,7 +123,7 @@ const From = ({ data }: props) => {
           file
         </span>
       )}
-      {data ? (
+      {data.name ? (
         // refactor this
         <button onClick={handleClick} className="rounded-md bg-red-500/50 px-10 py-2">Delete</button>
       ) : (
