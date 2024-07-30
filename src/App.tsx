@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/Login";
 import RootPage from "./pages/Root";
 import ChallengePage from "./pages/Challenge";
-import { loginLoader } from "./pages/Login"
 
 const router = createBrowserRouter([
   {
@@ -13,7 +12,6 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
-    loader: loginLoader
   },
   {
     path: "/challenge",

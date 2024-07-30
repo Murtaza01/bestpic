@@ -4,9 +4,11 @@ import { MdCloudUpload } from "react-icons/md";
 import { MdError } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { LoggedUserData } from "../util/types";
+import { useAppDispatch, useAppSelector } from "../store";
+import { clear, save } from "../store/tokenSlice";
 
 type props = {
-  data: LoggedUserData;
+  data?: LoggedUserData;
 };
 
 const From = ({ data }: props) => {
@@ -14,6 +16,10 @@ const From = ({ data }: props) => {
   const [error, setError] = useState<string | undefined>();
   const [submitting, setSubmitting] = useState<boolean | undefined>();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch()
+  const token = useAppSelector(state=>state.token.value)
+
+
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
     setSubmitting(true);
@@ -30,6 +36,7 @@ const From = ({ data }: props) => {
     if (response.token) {
       localStorage.setItem("token", response.token);
       setSubmitting(false);
+      dispatch(save(response.token))
       navigate("..");
     } else {
       setError(response);
@@ -46,15 +53,17 @@ const From = ({ data }: props) => {
   }
 
   async function handleClick(){
-    const results = await fetchDeleteUser()
+    const results = await fetchDeleteUser(token)
     console.log(results);
     
     if(!(results instanceof Error)){
       console.log("user got deleted");
       localStorage.clear()
+      dispatch(clear())
       return navigate("/")
     }
   }
+
 
 
   
@@ -76,7 +85,7 @@ const From = ({ data }: props) => {
           className="peer block h-8 w-64 border-b-2 border-black bg-transparent placeholder-transparent outline-none"
           type="text"
           name="name"
-          defaultValue={data.name}
+          defaultValue={data?.name || ""}
           id="name"
           placeholder="Name"
           required
@@ -89,8 +98,8 @@ const From = ({ data }: props) => {
         </label>
       </div>
 
-      {data.imageUrl ? (
-        <img src={data.imageUrl} className="size-44" alt="" />
+      {data ? (
+        <img src={data?.imageUrl} className="size-44" alt="" />
       ) : (
         <div className="max-w-96 px-4">
           <label
@@ -117,7 +126,8 @@ const From = ({ data }: props) => {
           file
         </span>
       )}
-      {data.name ? (
+      {data ? (
+        // refactor this
         <button onClick={handleClick} className="rounded-md bg-red-500/50 px-10 py-2">Delete</button>
       ) : (
         <button className="rounded-md bg-black/20 px-10 py-2">
