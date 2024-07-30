@@ -2,27 +2,28 @@ import From from "../components/Form";
 import { Link, useLoaderData } from "react-router-dom";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { fetchToken } from "../util/http";
-import storage from "redux-persist/lib/storage";
-import { LoggedUserData } from "../util/types";
-
+import { user, User } from "../util/types";
+import {  getStorageToken } from "../util/helpers";
 
 const LoginPage = () => {
-  const data = useLoaderData() || {name:"",imageUrl:""}
+  const data = useLoaderData() || user
 
   return (
     <div className="loginBg flex h-screen flex-col font-mono font-bold text-white">
       <Link to={".."} className="w-max px-2 py-1">
         <MdKeyboardBackspace className="text-4xl text-black" />
       </Link>
-      <From data={data as LoggedUserData} />
+      <From data={data as User} />
     </div>
   );
 };
 
 export async function loginLoader(){
-  const token = await storage.getItem("token")
+
+  const token = await getStorageToken()
+  
   if(token){
-    const resData = await fetchToken();
+    const resData = await fetchToken();    
     return resData
   }
   return null;

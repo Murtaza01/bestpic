@@ -3,12 +3,12 @@ import { fetchDeleteUser, fetchLogin } from "../util/http";
 import { MdCloudUpload } from "react-icons/md";
 import { MdError } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { LoggedUserData } from "../util/types";
 import { useAppDispatch } from "../store";
 import { clear, save } from "../store/tokenSlice";
+import { User } from "../util/types";
 
 type props = {
-  data: LoggedUserData;
+  data: User;
 };
 
 const From = ({ data }: props) => {
@@ -18,7 +18,6 @@ const From = ({ data }: props) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch()
  
-  
 
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
@@ -61,9 +60,6 @@ const From = ({ data }: props) => {
     }
   }
 
-
-
-  
   return (
     <form
       className="relative flex flex-1 flex-col items-center justify-center gap-10"
@@ -82,7 +78,7 @@ const From = ({ data }: props) => {
           className="peer block h-8 w-64 border-b-2 border-black bg-transparent placeholder-transparent outline-none"
           type="text"
           name="name"
-          defaultValue={data?.name || ""}
+          defaultValue={data.name}
           id="name"
           placeholder="Name"
           required
@@ -123,7 +119,7 @@ const From = ({ data }: props) => {
           file
         </span>
       )}
-      {data.name ? (
+      {data._id ? (
         // refactor this
         <button onClick={handleClick} className="rounded-md bg-red-500/50 px-10 py-2">Delete</button>
       ) : (

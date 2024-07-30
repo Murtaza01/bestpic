@@ -1,4 +1,4 @@
-// type of data that comes from backend
+// localUser
 export type Challenge = {
   _id: string;
   name: string;
@@ -9,7 +9,17 @@ export type Challenge = {
   };
 }[];
 
-export type LoggedUserData = {
-  name:string
-  imageUrl:string
+// onlineUser
+export type User = {
+  _id:string
+  name: string;
+  imageUrl: string;
+  imageId: string;
+}
+
+export const user = {
+  _id: '',
+  name: '',
+  imageUrl: '',
+  imageId: '',
 }
