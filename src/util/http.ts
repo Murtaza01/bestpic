@@ -1,3 +1,4 @@
+import storage from "redux-persist/lib/storage";
 import { processError } from "./helpers";
 
 const URL = "http://localhost:3000";
@@ -23,7 +24,6 @@ export async function fetchLogin(data: FormData) {
     });
     const resData = await response.json()
     console.log(resData);
-    
     return resData
   } catch (error) {
     // returns the error message if it exist
@@ -31,7 +31,8 @@ export async function fetchLogin(data: FormData) {
   }
 }
 
-export async function fetchToken(token:string){
+export async function fetchToken(){
+  const token = await storage.getItem("token")
   const response = await fetch(`${URL}/onlineUsers/token`,{
     method:"POST",
     headers:{
@@ -42,8 +43,9 @@ export async function fetchToken(token:string){
   return resData
 }
 
-export async function fetchDeleteUser(token:string) {
+export async function fetchDeleteUser() {
   try {
+    const token = await storage.getItem("token")
     const response = await fetch(`${URL}/onlineUsers/deleteUser`, {
       method: "DELETE",
       headers:{

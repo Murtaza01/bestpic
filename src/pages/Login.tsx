@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { fetchToken } from "../util/http";
 import { LoggedUserData } from "../util/types";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppSelector } from "../store";
 
 
@@ -13,10 +13,11 @@ const LoginPage = () => {
   const [data, setData] = useState<LoggedUserData>()
   const token = useAppSelector(state => state.token.value)
 
+
   useEffect(() => {
     if (token) {
       (async () => {
-        const resData = await fetchToken(token)
+        const resData = await fetchToken()
         setData(resData)
       }
       )()
