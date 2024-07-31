@@ -3,7 +3,7 @@ import { fetchChallengers, fetchUpdateUserWins } from "../util/http";
 import PieChart from "../components/PieChart";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
-import Loader from "../components/Loader";
+import Loading from "../components/Loading";
 import Error from "../components/Error";
 
 const ChallengeResultPage = () => {
@@ -40,7 +40,7 @@ const ChallengeResultPage = () => {
         {fatimaWon ? "Fatima Won" : mohamedWon ? "Mohamed Won" : "Its a Tie"}
       </h1>
       {isPending ? (
-        <Loader msg="Please wait while loading Result" />
+        <Loading msg="Please wait while loading Result" />
       ) : isError ? (
         <Error msg="Failed to get the results, please try again" />
       ) : (

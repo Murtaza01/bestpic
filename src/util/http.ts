@@ -30,16 +30,22 @@ export async function fetchLogin(data: FormData) {
   }
 }
 
-export async function fetchToken(){
-  const token = await getStorageToken()
-  const response = await fetch(`${URL}/onlineUsers/token`,{
-    method:"POST",
-    headers:{
-      'Authorization':`Bearer ${token}`
-    }
-  })
-  const resData = await response.json()
-  return resData
+export async function fetchToken() {
+  try {
+    const token = await getStorageToken()
+    const response = await fetch(`${URL}/onlineUsers/token`, {
+      method: "POST",
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    if (!response.ok) throw Error("failed to fetch data");
+    const resData = await response.json()
+    return resData
+  } catch (e) {
+    return e
+  }
+
 }
 
 export async function fetchDeleteUser() {
@@ -47,8 +53,8 @@ export async function fetchDeleteUser() {
     const token = await getStorageToken()
     const response = await fetch(`${URL}/onlineUsers/deleteUser`, {
       method: "DELETE",
-      headers:{
-         'Authorization':`Bearer ${token}`
+      headers: {
+        'Authorization': `Bearer ${token}`
       }
     });
     if (!response.ok) throw Error("failed to fetch data");

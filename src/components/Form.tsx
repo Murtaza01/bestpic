@@ -1,4 +1,4 @@
-import {  SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import { fetchDeleteUser, fetchLogin } from "../util/http";
 import { MdCloudUpload } from "react-icons/md";
 import { MdError } from "react-icons/md";
@@ -6,40 +6,42 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../store";
 import { clear, save } from "../store/tokenSlice";
 import { User } from "../util/types";
+import { useMutation } from "@tanstack/react-query";
 
 type props = {
-  data: User;
+  userData: User;
 };
 
-const From = ({ data }: props) => {
-  const [fileName, setFileName] = useState<string>();
-  const [error, setError] = useState<string | undefined>();
-  const [submitting, setSubmitting] = useState<boolean | undefined>();
+const From = ({ userData }: props) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch()
- 
+  const [fileName, setFileName] = useState<string>();
+
+  const { mutate, isError, isPending } = useMutation({
+    mutationKey: ["login"],
+    mutationFn: (data: FormData) => {
+      return fetchLogin(data)
+    },
+    onSuccess: (data) => {
+      dispatch(save(data.token))
+      return navigate("..")
+    }
+  })
+
+
 
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
-    setSubmitting(true);
-    // if no file selected set empty string to show error and don't send data
+
     if (!fileName) {
       setFileName("");
-      setSubmitting(false);
       return;
     }
+
     const target = e.target as HTMLFormElement;
     const formData = new FormData(target);
-    const response = await fetchLogin(formData);
+    mutate(formData)
 
-    if (response.token) {
-      setSubmitting(false);
-      dispatch(save(response.token))
-      navigate("..");
-    } else {
-      setError(response);
-      setSubmitting(false);
-    }
   }
 
   function handleChange(e: SyntheticEvent) {
@@ -50,10 +52,10 @@ const From = ({ data }: props) => {
     }
   }
 
-  async function handleClick(){
+  async function handleClick() {
     const results = await fetchDeleteUser()
     console.log(results);
-    if(!(results instanceof Error)){
+    if (!(results instanceof Error)) {
       console.log("user got deleted");
       dispatch(clear())
       return navigate("..")
@@ -67,7 +69,7 @@ const From = ({ data }: props) => {
       encType="multipart/form-data"
       onSubmit={handleSubmit}
     >
-      {error && (
+      {isError && (
         <span className="absolute top-[10%] w-[70%] bg-red-600 px-2 py-3 text-center">
           Failed To Fetch, Please try again later
         </span>
@@ -78,7 +80,7 @@ const From = ({ data }: props) => {
           className="peer block h-8 w-64 border-b-2 border-black bg-transparent placeholder-transparent outline-none"
           type="text"
           name="name"
-          defaultValue={data.name}
+          defaultValue={userData.name}
           id="name"
           placeholder="Name"
           required
@@ -91,8 +93,8 @@ const From = ({ data }: props) => {
         </label>
       </div>
 
-      {data.imageUrl ? (
-        <img src={data?.imageUrl} className="size-44" alt="" />
+      {userData.imageUrl ? (
+        <img src={userData?.imageUrl} className="size-44" alt="" />
       ) : (
         <div className="max-w-96 px-4">
           <label
@@ -119,12 +121,12 @@ const From = ({ data }: props) => {
           file
         </span>
       )}
-      {data._id ? (
-        // refactor this
+      {userData._id ? (
+
         <button onClick={handleClick} className="rounded-md bg-red-500/50 px-10 py-2">Delete</button>
       ) : (
         <button className="rounded-md bg-black/20 px-10 py-2">
-          {submitting ? "Submitting..." : "Submit"}
+          {isPending ? "Submitting..." : "Submit"}
         </button>
       )}
     </form>

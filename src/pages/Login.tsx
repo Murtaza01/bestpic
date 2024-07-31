@@ -13,21 +13,20 @@ const LoginPage = () => {
       <Link to={".."} className="w-max px-2 py-1">
         <MdKeyboardBackspace className="text-4xl text-black" />
       </Link>
-      <From data={data as User} />
+      <From userData={data as User} />
     </div>
   );
 };
 
 export async function loginLoader(){
-
   const token = await getStorageToken()
-  
+
   if(token){
-    const resData = await fetchToken();    
-    return resData
+    const response = await fetchToken();
+    if(response instanceof Error) throw Error(response.message);  
+    return response
   }
   return null;
-  
 }
 
 
