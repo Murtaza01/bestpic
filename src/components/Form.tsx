@@ -17,7 +17,7 @@ const From = ({ userData }: props) => {
   const dispatch = useAppDispatch()
   const [fileName, setFileName] = useState<string>();
 
-  const { mutate, isError, isPending } = useMutation({
+  const { mutate: logUser, isError, isPending } = useMutation({
     mutationKey: ["login"],
     mutationFn: (data: FormData) => {
       return fetchLogin(data)
@@ -28,9 +28,20 @@ const From = ({ userData }: props) => {
     }
   })
 
+  const { mutate: deleteUser,
+    isPending: deletePending,
+    isError: deleteError } = useMutation({
+      mutationKey: ["logout"],
+      mutationFn: fetchDeleteUser,
+      onSuccess: () => {
+        dispatch(clear())
+        return navigate("..")
+      }
+    })
 
 
-  async function handleSubmit(e: SyntheticEvent) {
+
+  function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
 
     if (!fileName) {
@@ -40,8 +51,7 @@ const From = ({ userData }: props) => {
 
     const target = e.target as HTMLFormElement;
     const formData = new FormData(target);
-    mutate(formData)
-
+    logUser(formData)
   }
 
   function handleChange(e: SyntheticEvent) {
@@ -52,16 +62,6 @@ const From = ({ userData }: props) => {
     }
   }
 
-  async function handleClick() {
-    const results = await fetchDeleteUser()
-    console.log(results);
-    if (!(results instanceof Error)) {
-      console.log("user got deleted");
-      dispatch(clear())
-      return navigate("..")
-    }
-  }
-
   return (
     <form
       className="relative flex flex-1 flex-col items-center justify-center gap-10"
@@ -69,18 +69,17 @@ const From = ({ userData }: props) => {
       encType="multipart/form-data"
       onSubmit={handleSubmit}
     >
-      {isError && (
-        <span className="absolute top-[10%] w-[70%] bg-red-600 px-2 py-3 text-center">
+      {isError || deleteError ?  (
+        <span className="absolute top-[6%] w-[70%] bg-red-600 px-2 py-3 text-center">
           Failed To Fetch, Please try again later
         </span>
-      )}
+      ): undefined}
 
-      <div className="relative">
+      {userData.name ? <h2 className="text-xl">{userData.name}</h2> : <div className="relative">
         <input
           className="peer block h-8 w-64 border-b-2 border-black bg-transparent placeholder-transparent outline-none"
           type="text"
           name="name"
-          defaultValue={userData.name}
           id="name"
           placeholder="Name"
           required
@@ -91,10 +90,10 @@ const From = ({ userData }: props) => {
         >
           Your Name
         </label>
-      </div>
+      </div>}
 
       {userData.imageUrl ? (
-        <img src={userData?.imageUrl} className="size-44" alt="" />
+        <img src={userData.imageUrl} className="size-44 rounded-md object-cover" alt="" />
       ) : (
         <div className="max-w-96 px-4">
           <label
@@ -114,18 +113,19 @@ const From = ({ userData }: props) => {
           </label>
         </div>
       )}
-
-      {fileName === "" && (
+      {/* if userData is not fetched and no file were givin */}
+      {!userData.imageUrl && fileName === "" && (
         <span className="">
           <MdError className="inline text-xl text-yellow-400" /> put your godman
           file
         </span>
       )}
       {userData._id ? (
-
-        <button onClick={handleClick} className="rounded-md bg-red-500/50 px-10 py-2">Delete</button>
+        <button onClick={() => deleteUser()} className={`rounded-md bg-neutral-900/40 px-10 py-2 backdrop-blur-sm ${deletePending && "animate-pulse"}`}>
+          {deletePending ? "Deleting..." : "Delete"}
+        </button>
       ) : (
-        <button className="rounded-md bg-black/20 px-10 py-2">
+        <button className={`rounded-md bg-neutral-900/30 px-10 py-2 ${isPending && "animate-pulse"}`}>
           {isPending ? "Submitting..." : "Submit"}
         </button>
       )}

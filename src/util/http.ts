@@ -16,22 +16,15 @@ export async function fetchUsers() {
 }
 
 export async function fetchLogin(data: FormData) {
-  try {
     const response = await fetch(`${URL}/onlineUsers/login`, {
       method: "POST",
       body: data,
     });
     const resData = await response.json()
-    console.log(resData);
     return resData
-  } catch (error) {
-    // returns the error message if it exist
-    return processError(error);
-  }
 }
 
 export async function fetchToken() {
-  try {
     const token = await getStorageToken()
     const response = await fetch(`${URL}/onlineUsers/token`, {
       method: "POST",
@@ -39,17 +32,11 @@ export async function fetchToken() {
         'Authorization': `Bearer ${token}`
       }
     })
-    if (!response.ok) throw Error("failed to fetch data");
     const resData = await response.json()
     return resData
-  } catch (e) {
-    return e
-  }
-
 }
 
 export async function fetchDeleteUser() {
-  try {
     const token = await getStorageToken()
     const response = await fetch(`${URL}/onlineUsers/deleteUser`, {
       method: "DELETE",
@@ -57,12 +44,8 @@ export async function fetchDeleteUser() {
         'Authorization': `Bearer ${token}`
       }
     });
-    if (!response.ok) throw Error("failed to fetch data");
     const result = await response.json();
     return result;
-  } catch (error) {
-    return error
-  }
 }
 
 export async function fetchUpdateUser(id: string, data: {}) {
