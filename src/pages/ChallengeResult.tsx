@@ -1,5 +1,5 @@
 import { useAppSelector } from "../store";
-import { fetchChallengers, fetchUpdateUserWins } from "../util/http";
+import { fetchLocalUsers, fetchUpdateUserWins } from "../util/http";
 import PieChart from "../components/PieChart";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
@@ -9,20 +9,21 @@ import Error from "../components/Error";
 const ChallengeResultPage = () => {
   const mohamedScore = useAppSelector((state) => state.score.mohamed);
   const fatimaScore = useAppSelector((state) => state.score.fatima);
-  const {
-    data: challengeData,
-    isPending,
-    isError,
-  } = useQuery({
-    queryKey: ["challengers"],
-    queryFn: fetchChallengers,
-  });
-
-  // handle mutate loading and error
-  const { mutate } = useMutation({
+  const { mutate, isSuccess } = useMutation({
     mutationFn: (name: string) => {
       return fetchUpdateUserWins(name);
     },
+  });
+
+  const {
+    data,
+    isPending,
+    isError,
+  } = useQuery({
+    queryKey: ["localUsers"],
+    queryFn: fetchLocalUsers,
+    // won't run unless the mutate finishes 
+    enabled: isSuccess
   });
 
   const fatimaWon = fatimaScore > mohamedScore;
@@ -44,7 +45,7 @@ const ChallengeResultPage = () => {
       ) : isError ? (
         <Error msg="Failed to get the results, please try again" />
       ) : (
-        <PieChart challengeData={challengeData} />
+        <PieChart localUsers={data} />
       )}
     </div>
   );

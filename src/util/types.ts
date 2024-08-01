@@ -1,10 +1,10 @@
 // localUser
-export type Challenge = {
+export type LocalUsers = {
   _id: string;
   name: string;
-  mvsf: {
-    mohamedWins: number;
-    fatimaWins: number;
+  mohamedANDfatima: {
+    mohamed: number;
+    fatima: number;
     tie: number;
   };
 }[];

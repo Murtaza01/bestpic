@@ -24,7 +24,7 @@ const Hero = () => {
               adding your picture and enter a challenge with other people
             </p>
             <a
-              href="#challenge"
+              href="#challenges"
               onClick={scrollToView}
               className="rounded-sm bg-white/30 px-5 py-1 font-mono backdrop-blur-md"
             >

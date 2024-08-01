@@ -4,7 +4,8 @@ import niceView from "../images/niceView.jpg";
 import roman from "../images/roman.jpg";
 import doorView from "../images/doorView.jpg";
 import books from "../images/books.jpg";
-const challengeImages = [
+
+const localImages = [
   [
     {
       image: blueCar,
@@ -47,4 +48,4 @@ const challengeImages = [
   ],
 ];
 
-export default challengeImages;
+export default localImages;

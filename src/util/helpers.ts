@@ -15,10 +15,10 @@ export function shuffle(array: any[]) {
   }
 }
 
-export function processError(error: unknown) {
-  if (error instanceof Error) return error.message;
-  return String(error);
-}
+// export function processError(error: unknown) {
+//   if (error instanceof Error) return error.message;
+//   return String(error);
+// }
 
 export function capitalize(name: string) {
   return name.charAt(0).toUpperCase() + name.slice(1);
@@ -28,11 +28,10 @@ export function capitalize(name: string) {
 
 export async function getStorageToken() {
   const persistStorage = await storage.getItem("persist:root")
-
   if (persistStorage) {
     const storageData: { token: string } = JSON.parse(persistStorage);
     const token: { value: string } = JSON.parse(storageData.token);
     return token.value
   }
-
+  return;
 }

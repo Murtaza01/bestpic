@@ -1,22 +1,17 @@
-import { getStorageToken, processError } from "./helpers";
+import { getStorageToken } from "./helpers";
 
-const URL = "http://localhost:3000";
-
+const onlineUsersUrl = "http://localhost:3000/onlineUsers"
+const localUsersUrl = "http://localhost:3000/localUsers"
 
 // TODO: change the routes according to the backend
 export async function fetchUsers() {
-  try {
     const response = await fetch(`${URL}/users`);
     const users = response.json();
-    if (!response.ok) throw Error("failed to fetch data");
     return users;
-  } catch (error) {
-    return processError(error);
-  }
 }
 
 export async function fetchLogin(data: FormData) {
-    const response = await fetch(`${URL}/onlineUsers/login`, {
+    const response = await fetch(`${onlineUsersUrl}/login`, {
       method: "POST",
       body: data,
     });
@@ -26,7 +21,7 @@ export async function fetchLogin(data: FormData) {
 
 export async function fetchToken() {
     const token = await getStorageToken()
-    const response = await fetch(`${URL}/onlineUsers/token`, {
+    const response = await fetch(`${onlineUsersUrl}/token`, {
       method: "POST",
       headers: {
         'Authorization': `Bearer ${token}`
@@ -38,7 +33,7 @@ export async function fetchToken() {
 
 export async function fetchDeleteUser() {
     const token = await getStorageToken()
-    const response = await fetch(`${URL}/onlineUsers/deleteUser`, {
+    const response = await fetch(`${onlineUsersUrl}/deleteUser`, {
       method: "DELETE",
       headers: {
         'Authorization': `Bearer ${token}`
@@ -49,7 +44,6 @@ export async function fetchDeleteUser() {
 }
 
 export async function fetchUpdateUser(id: string, data: {}) {
-  try {
     const response = await fetch(`${URL}/edit/${id}`, {
       method: "PATCH",
       body: JSON.stringify(data),
@@ -60,29 +54,20 @@ export async function fetchUpdateUser(id: string, data: {}) {
     if (!response.ok) throw Error("failed to fetch data");
     const result = response.json();
     return result;
-  } catch (error) {
-    return processError(error);
-  }
 }
 
-
+export async function fetchLocalUsers() {
+  const response = await fetch(`${localUsersUrl}/users`);
+  const resData = response.json();
+  return resData;
+}
 
 export async function fetchUpdateUserWins(name: string) {
-  try {
-    const response = await fetch(`${URL}/challenge/${name}`, {
+    const response = await fetch(`${localUsersUrl}/${name}`, {
       method: "PATCH",
     });
-    if (!response.ok) throw Error("failed to connect");
     const result = response.json();
     return result;
-  } catch (error) {
-    return processError(error);
-  }
 }
 
-export async function fetchChallengers() {
-  const response = await fetch(`${URL}/challengers`);
-  const challengers = response.json();
-  if (!response.ok) throw Error("failed to fetch challengers");
-  return challengers;
-}
+
