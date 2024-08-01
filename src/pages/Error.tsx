@@ -1,11 +1,13 @@
 import { useRouteError } from "react-router-dom";
 
 const ErrorPage = () => {
-    const error = useRouteError()
+  const error = useRouteError();
 
-    return <>
-        <h1>{error instanceof Error ? error.message : "normal error"}</h1>
-    </>;
-}
+  return (
+    <>
+      <h1>{error instanceof Error ? error.message : "normal error"}</h1>
+    </>
+  );
+};
 
-export default ErrorPage
+export default ErrorPage;

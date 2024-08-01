@@ -2,12 +2,12 @@ import { useState } from "react";
 import { shuffle } from "../util/helpers";
 import { useAppDispatch } from "../store";
 import { incFatima, incMohamed, zeroingScore } from "../store/scoreSlice";
-import localImages from "../assets/data/local";
-import ChallengeResultPage from "./ChallengeResult";
+import { localImages } from "../assets/data/local";
+import LocalResultPage from "./LocalResult";
 
 let firstRender = false;
 
-const ChallengePage = () => {
+const LocalChallengePage = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const dispatch = useAppDispatch();
 
@@ -19,7 +19,7 @@ const ChallengePage = () => {
   window.onpopstate = () => {
     dispatch(zeroingScore());
   };
-  
+
   function handleClick(id: string) {
     if (id === "mohamed") {
       dispatch(incMohamed());
@@ -32,7 +32,7 @@ const ChallengePage = () => {
   const endOfChallenge = currentIndex === localImages.length;
 
   if (endOfChallenge) {
-    return <ChallengeResultPage />
+    return <LocalResultPage />
   }
 
   return (
@@ -60,4 +60,4 @@ const ChallengePage = () => {
   );
 };
 
-export default ChallengePage;
+export default LocalChallengePage;

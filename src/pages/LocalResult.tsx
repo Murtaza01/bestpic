@@ -6,34 +6,30 @@ import { useEffect } from "react";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 
-const ChallengeResultPage = () => {
+const LocalResultPage = () => {
   const mohamedScore = useAppSelector((state) => state.score.mohamed);
   const fatimaScore = useAppSelector((state) => state.score.fatima);
+  const fatimaWon = fatimaScore > mohamedScore;
+  const mohamedWon = mohamedScore > fatimaScore;
+
   const { mutate, isSuccess } = useMutation({
     mutationFn: (name: string) => {
       return fetchUpdateUserWins(name);
     },
   });
 
-  const {
-    data,
-    isPending,
-    isError,
-  } = useQuery({
-    queryKey: ["localUsers"],
-    queryFn: fetchLocalUsers,
-    // won't run unless the mutate finishes 
-    enabled: isSuccess
-  });
-
-  const fatimaWon = fatimaScore > mohamedScore;
-  const mohamedWon = mohamedScore > fatimaScore;
-
   useEffect(() => {
     if (fatimaWon) mutate("fatima");
     else if (mohamedWon) mutate("mohamed");
     else mutate("tie");
   }, []);
+
+  const { data, isPending, isError } = useQuery({
+    queryKey: ["localUsers"],
+    queryFn: fetchLocalUsers,
+    // won't run unless the mutate finishes
+    enabled: isSuccess,
+  });
 
   return (
     <div className="flex h-screen flex-col items-center justify-center gap-5">
@@ -51,4 +47,4 @@ const ChallengeResultPage = () => {
   );
 };
 
-export default ChallengeResultPage;
+export default LocalResultPage;

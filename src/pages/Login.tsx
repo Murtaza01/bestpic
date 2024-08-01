@@ -3,10 +3,10 @@ import { Link, useLoaderData } from "react-router-dom";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { fetchToken } from "../util/http";
 import { user, User } from "../util/types";
-import {  getStorageToken } from "../util/helpers";
+import { getStorageToken } from "../util/helpers";
 
 const LoginPage = () => {
-  const data = useLoaderData() || user
+  const data = useLoaderData() || user;
 
   return (
     <div className="loginBg flex h-screen flex-col font-mono font-bold text-white">
@@ -18,18 +18,15 @@ const LoginPage = () => {
   );
 };
 
-export async function loginLoader(){
-  const token = await getStorageToken()
+export async function loginLoader() {
+  const token = await getStorageToken();
 
-  if(token){
+  if (token) {
     const response = await fetchToken();
-    if(response instanceof Error) throw Error(response.message);  
-    return response
+    if (response instanceof Error) throw Error(response.message);
+    return response;
   }
   return null;
 }
 
-
-
 export default LoginPage;
-

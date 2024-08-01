@@ -4,8 +4,12 @@ import niceView from "../images/niceView.jpg";
 import roman from "../images/roman.jpg";
 import doorView from "../images/doorView.jpg";
 import books from "../images/books.jpg";
+import mohamed from "../images/mohamed.png"
+import fatima from "../images/fatima.png"
+import swords from "../images/swords_1500765.png"
 
-const localImages = [
+
+export const localImages = [
   [
     {
       image: blueCar,
@@ -48,4 +52,20 @@ const localImages = [
   ],
 ];
 
-export default localImages;
+export const localSection = [
+  {
+    id:1,
+    name:"Mohamed",
+    svg:mohamed
+  },
+  {
+    id:2,
+    name:"",
+    svg:swords,
+  },
+  {
+    id:3,
+    name:"Fatima",
+    svg:fatima
+  }
+]
