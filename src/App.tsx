@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />
   },
   {
-    path: "/challenge",
+    path: "/localChallenge",
     element: <LocalChallenge />,
   },
 
