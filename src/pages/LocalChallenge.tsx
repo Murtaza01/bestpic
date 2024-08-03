@@ -2,7 +2,7 @@ import { useState } from "react";
 import { shuffle } from "../util/helpers";
 import { useAppDispatch } from "../store";
 import { incFatima, incMohamed, zeroingScore } from "../store/scoreSlice";
-import { localImages } from "../assets/data/local";
+import { localImages } from "../assets/data/localChallenge";
 import LocalResultPage from "./LocalResult";
 
 let firstRender = false;

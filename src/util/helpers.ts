@@ -25,7 +25,6 @@ export function capitalize(name: string) {
 }
 
 
-
 export async function getStorageToken() {
   const persistStorage = await storage.getItem("persist:root")
   if (persistStorage) {

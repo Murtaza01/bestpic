@@ -4,9 +4,6 @@ import niceView from "../images/niceView.jpg";
 import roman from "../images/roman.jpg";
 import doorView from "../images/doorView.jpg";
 import books from "../images/books.jpg";
-import mohamed from "../images/mohamed.png"
-import fatima from "../images/fatima.png"
-import swords from "../images/swords.png"
 
 
 export const localImages = [
@@ -52,22 +49,3 @@ export const localImages = [
   ],
 ];
 
-export const localData = [
-  {
-    id:1,
-    name:"Mohamed",
-    svg:mohamed,
-    bg:"bg-sky-500"
-  },
-  {
-    id:2,
-    svg:swords,
-
-  },
-  {
-    id:3,
-    name:"Fatima",
-    svg:fatima,
-    bg:"bg-rose-500"
-  }
-]

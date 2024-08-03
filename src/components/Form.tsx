@@ -7,6 +7,7 @@ import { useAppDispatch } from "../store";
 import { clear, save } from "../store/tokenSlice";
 import { User } from "../util/types";
 import { useMutation } from "@tanstack/react-query";
+import ErrorMessage from "./ErrorMessage";
 
 type props = {
   userData: User;
@@ -14,32 +15,36 @@ type props = {
 
 const From = ({ userData }: props) => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const [fileName, setFileName] = useState<string>();
 
-  const { mutate: logUser, isError, isPending } = useMutation({
+  const {
+    mutate: logUser,
+    isError,
+    isPending,
+  } = useMutation({
     mutationKey: ["login"],
     mutationFn: (data: FormData) => {
-      return fetchLogin(data)
+      return fetchLogin(data);
     },
     onSuccess: (data) => {
-      dispatch(save(data.token))
-      return navigate("..")
-    }
-  })
+      dispatch(save(data.token));
+      return navigate("..");
+    },
+  });
 
-  const { mutate: deleteUser,
+  const {
+    mutate: deleteUser,
     isPending: deletePending,
-    isError: deleteError } = useMutation({
-      mutationKey: ["logout"],
-      mutationFn: fetchDeleteUser,
-      onSuccess: () => {
-        dispatch(clear())
-        return navigate("..")
-      }
-    })
-
-
+    isError: deleteError,
+  } = useMutation({
+    mutationKey: ["logout"],
+    mutationFn: fetchDeleteUser,
+    onSuccess: () => {
+      dispatch(clear());
+      return navigate("..");
+    },
+  });
 
   function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
@@ -51,7 +56,7 @@ const From = ({ userData }: props) => {
 
     const target = e.target as HTMLFormElement;
     const formData = new FormData(target);
-    logUser(formData)
+    logUser(formData);
   }
 
   function handleChange(e: SyntheticEvent) {
@@ -69,31 +74,40 @@ const From = ({ userData }: props) => {
       encType="multipart/form-data"
       onSubmit={handleSubmit}
     >
-      {isError || deleteError ?  (
-        <span className="absolute top-[6%] w-[70%] bg-red-600 px-2 py-3 text-center">
-          Failed To Fetch, Please try again later
-        </span>
-      ): undefined}
-
-      {userData.name ? <h2 className="text-xl">{userData.name}</h2> : <div className="relative">
-        <input
-          className="peer block h-8 w-64 border-b-2 border-black bg-transparent placeholder-transparent outline-none"
-          type="text"
-          name="name"
-          id="name"
-          placeholder="Name"
-          required
+      {isError || deleteError ? (
+        <ErrorMessage
+          position="absolute top-[6%]"
+          msg="Failed To Fetch, Please try again later"
         />
-        <label
-          htmlFor="name"
-          className="absolute -top-5 start-0 cursor-text text-sm transition-all peer-placeholder-shown:top-1 peer-placeholder-shown:text-base"
-        >
-          Your Name
-        </label>
-      </div>}
+      ) : undefined}
+
+      {userData.name ? (
+        <h2 className="text-xl">{userData.name}</h2>
+      ) : (
+        <div className="relative">
+          <input
+            className="peer block h-8 w-64 border-b-2 border-black bg-transparent placeholder-transparent outline-none"
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Name"
+            required
+          />
+          <label
+            htmlFor="name"
+            className="absolute -top-5 start-0 cursor-text text-sm transition-all peer-placeholder-shown:top-1 peer-placeholder-shown:text-base"
+          >
+            Your Name
+          </label>
+        </div>
+      )}
 
       {userData.imageUrl ? (
-        <img src={userData.imageUrl} className="size-44 rounded-md object-cover" alt="" />
+        <img
+          src={userData.imageUrl}
+          className="size-44 rounded-md object-cover"
+          alt=""
+        />
       ) : (
         <div className="max-w-96 px-4">
           <label
@@ -121,12 +135,23 @@ const From = ({ userData }: props) => {
         </span>
       )}
       {userData._id ? (
-        <button onClick={() => deleteUser()} className={`rounded-md bg-neutral-900/40 px-10 py-2 backdrop-blur-sm ${deletePending && "animate-pulse"}`}>
-          {deletePending ? "Deleting..." : "Delete"}
+        <button
+          onClick={() => deleteUser()}
+          className="rounded-md bg-neutral-900/40 px-10 py-2 backdrop-blur-sm"
+        >
+          {deletePending ? (
+            <span className="animate-pulse">Deleting...</span>
+          ) : (
+            "Delete"
+          )}
         </button>
       ) : (
-        <button className={`rounded-md bg-neutral-900/30 px-10 py-2 ${isPending && "animate-pulse"}`}>
-          {isPending ? "Submitting..." : "Submit"}
+        <button className="rounded-md bg-neutral-900/30 px-10 py-2">
+          {isPending ? (
+            <span className="animate-pulse">Submitting...</span>
+          ) : (
+            "Submit"
+          )}
         </button>
       )}
     </form>

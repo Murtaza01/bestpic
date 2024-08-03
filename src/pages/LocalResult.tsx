@@ -40,7 +40,7 @@ const LocalResultPage = () => {
       {isPending ? (
         <Loading msg="Please wait while loading Result" />
       ) : isError ? (
-        <ErrorMessage msg="Failed to get the results, please try again" />
+        <ErrorMessage position="centred -translate-y-16" msg="Failed to get the results, please try again" />
       ) : data ? (
         <PieChart localUsers={data} />
       ): undefined}

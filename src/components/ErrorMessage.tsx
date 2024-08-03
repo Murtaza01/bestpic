@@ -1,14 +1,15 @@
-import { BiError } from "react-icons/bi";
+import { FaXmark } from "react-icons/fa6";
 
 type props = {
   msg: string;
+  position: string;
 };
 
-const ErrorMessage = ({ msg }: props) => {
+const ErrorMessage = ({ msg, position }: props) => {
   return (
-    <div className="centred -translate-y-16">
-      <div className="flex items-center justify-between gap-2 rounded-sm bg-gray-200 px-4 py-2 font-semibold">
-        <BiError className="text-2xl text-yellow-400" />
+    <div className={`${position} w-96`}>
+      <div className="flex items-center justify-center gap-3 rounded-sm bg-red-500 px-4 py-3 font-sans font-normal text-white">
+        <FaXmark className="text-xl" />
         <p>{msg}</p>
       </div>
     </div>
