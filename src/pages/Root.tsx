@@ -15,12 +15,12 @@ const RootPage = () => {
       <div id="challenges" className="py-10 space-y-10">
       <ChallengeSection path="localChallenge">
         {local.map((localData)=>(
-          <Figures key={localData.id} data={...localData}/>
+          <Figures key={localData.id} data={localData}/>
         ))}
       </ChallengeSection>
-      <ChallengeSection path="">
+      <ChallengeSection path="onlineChallenge">
         {online.map((onlineData)=>(
-          <Figures key={onlineData.id} data={...onlineData}/>
+          <Figures key={onlineData.id} data={onlineData}/>
         ))}
       </ChallengeSection>
       </div>

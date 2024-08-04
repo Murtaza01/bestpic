@@ -38,7 +38,7 @@ const LocalResultPage = () => {
         {fatimaWon ? "Fatima Won" : mohamedWon ? "Mohamed Won" : "Its a Tie"}
       </h1>
       {isPending ? (
-        <Loading msg="Please wait while loading Result" />
+        <Loading msg="Please wait while loading Result" position="centred -translate-y-16 gap-3"/>
       ) : isError ? (
         <ErrorMessage position="centred -translate-y-16" msg="Failed to get the results, please try again" />
       ) : data ? (

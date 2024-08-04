@@ -7,7 +7,7 @@ type props = {
 
 const ErrorMessage = ({ msg, position }: props) => {
   return (
-    <div className={`${position} w-96`}>
+    <div className={`${position} max-w-96 px-2`}>
       <div className="flex items-center justify-center gap-3 rounded-sm bg-red-500 px-4 py-3 font-sans font-normal text-white">
         <FaXmark className="text-xl" />
         <p>{msg}</p>
