@@ -1,5 +1,4 @@
 import storage from "redux-persist/lib/storage";
-import { User } from "./types";
 
 export function shuffle(array: any[]) {
   let currentIndex = array.length;
