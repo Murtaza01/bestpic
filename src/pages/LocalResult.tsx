@@ -1,5 +1,5 @@
 import { useAppSelector } from "../store";
-import { fetchLocalUsers, fetchUpdateUserWins } from "../util/http";
+import { fetchLocalUsers, fetchIncLocalWins } from "../util/http";
 import PieChart from "../components/PieChart";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
@@ -14,7 +14,7 @@ const LocalResultPage = () => {
 
   const { mutate, isSuccess,isPending,isError } = useMutation({
     mutationFn: (name: string) => {
-      return fetchUpdateUserWins(name);
+      return fetchIncLocalWins(name);
     },
   });
 
@@ -32,6 +32,7 @@ const LocalResultPage = () => {
   });
 
 
+  
   return (
     <div className="flex h-screen flex-col items-center justify-center gap-5">
       <h1 className="mt-20 text-4xl">

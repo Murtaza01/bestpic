@@ -5,7 +5,7 @@ const URL = "http://localhost:3000"
 // TODO: change the routes according to the backend
 export async function fetchUsers() {
     const response = await fetch(`${URL}/onlineUsers/users`);
-    const users = response.json();
+    const users = await response.json();
     return users;
 }
 
@@ -42,30 +42,27 @@ export async function fetchDeleteUser() {
     return result;
 }
 
-// export async function fetchUpdateUser(id: string, data: {}) {
-//     const response = await fetch(`${URL}/edit/${id}`, {
-//       method: "PATCH",
-//       body: JSON.stringify(data),
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
-//     if (!response.ok) throw Error("failed to fetch data");
-//     const result = response.json();
-//     return result;
-// }
+export async function fetchIncOnlineWins(id: string) {
+    const response = await fetch(`${URL}/onlineUsers/${id}`, {
+      method: "PATCH",
+    });
+    if (!response.ok) throw Error("failed to fetch data");
+    const result = await response.json();
+    return result;
+}
 
 export async function fetchLocalUsers() {
   const response = await fetch(`${URL}/localUsers/users`);
-  const resData = response.json();
+  const resData = await response.json();
+
   return resData;
 }
 
-export async function fetchUpdateUserWins(name: string) {
+export async function fetchIncLocalWins(name: string) {
     const response = await fetch(`${URL}/localUsers/${name}`, {
       method: "PATCH",
     });
-    const result = response.json();
+    const result = await response.json();
     return result;
 }
 

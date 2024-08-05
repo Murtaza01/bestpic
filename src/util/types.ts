@@ -15,6 +15,7 @@ export type User = {
   name: string;
   imageUrl: string;
   imageId: string;
+  wins:number;
 }
 
 export const user = {
@@ -22,4 +23,5 @@ export const user = {
   name: '',
   imageUrl: '',
   imageId: '',
+  wins:0
 }

@@ -26,7 +26,7 @@ const OnlineChallengePage = () => {
     return (
       <Loading
         msg="its loading"
-        position="grid h-screen gap-3 place-items-center place-content-center"
+        position="middle"
       />
     );
 
@@ -34,7 +34,7 @@ const OnlineChallengePage = () => {
     return (
       <ErrorMessage
         msg="something wrong happened please try again later"
-        position="grid h-screen mx-auto place-content-center"
+        position="middle"
       />
     );
 
