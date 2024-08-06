@@ -22,7 +22,7 @@ const OnlineChallengePage = () => {
     setUserData(data);
   }, [data]);
 
-  if (!userData || isPending)
+  if (isPending)
     return (
       <Loading
         msg="its loading"
@@ -30,7 +30,7 @@ const OnlineChallengePage = () => {
       />
     );
 
-  if (isError)
+  if (!userData || isError)
     return (
       <ErrorMessage
         msg="something wrong happened please try again later"
@@ -45,7 +45,6 @@ const OnlineChallengePage = () => {
   }
 
   function remove(i: number) {
-
     setTimeout(() => {
       setUserData((prev) => {
         if (i === 0) {

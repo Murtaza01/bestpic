@@ -5,6 +5,7 @@ import sectionsData from "../assets/data/challengeSection";
 import Figures from "../components/Figures";
 
 
+
 const RootPage = () => {
 
   const {local,online} = sectionsData
@@ -24,6 +25,7 @@ const RootPage = () => {
         ))}
       </ChallengeSection>
       </div>
+
     </>
   );
 };

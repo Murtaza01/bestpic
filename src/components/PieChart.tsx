@@ -22,7 +22,6 @@ const options = {
   },
 };
 const PieChart = ({ localUsers }: props) => {
-  console.log(localUsers);
   
   const mohamedANDfatima = localUsers[0].mohamedANDfatima;
 
