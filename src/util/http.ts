@@ -1,16 +1,17 @@
 import { getStorageToken } from "./helpers";
 
-const URL = "http://localhost:3000"
+// const devURL = "http://localhost:3000"
+const URL = "https://bestpic-api.vercel.app"
 
 // TODO: change the routes according to the backend
 export async function fetchUsers() {
-    const response = await fetch(`${URL}/onlineUsers/users`);
+    const response = await fetch(`${URL}/onlineusers/`);
     const users = await response.json();
     return users;
 }
 
 export async function fetchLogin(data: FormData) {
-    const response = await fetch(`${URL}/onlineUsers/login`, {
+    const response = await fetch(`${URL}/onlineusers/login`, {
       method: "POST",
       body: data,
     });
@@ -20,7 +21,7 @@ export async function fetchLogin(data: FormData) {
 
 export async function fetchToken() {
     const token = await getStorageToken()
-    const response = await fetch(`${URL}/onlineUsers/token`, {
+    const response = await fetch(`${URL}/onlineusers/token`, {
       method: "POST",
       headers: {
         'Authorization': `Bearer ${token}`
@@ -32,7 +33,7 @@ export async function fetchToken() {
 
 export async function fetchDeleteUser() {
     const token = await getStorageToken()
-    const response = await fetch(`${URL}/onlineUsers/deleteUser`, {
+    const response = await fetch(`${URL}/onlineusers/deleteUser`, {
       method: "DELETE",
       headers: {
         'Authorization': `Bearer ${token}`
@@ -43,7 +44,7 @@ export async function fetchDeleteUser() {
 }
 
 export async function fetchIncOnlineWins(id: string) {
-    const response = await fetch(`${URL}/onlineUsers/${id}`, {
+    const response = await fetch(`${URL}/onlineusers/${id}`, {
       method: "PATCH",
     });
     if (!response.ok) throw Error("failed to fetch data");
@@ -52,14 +53,14 @@ export async function fetchIncOnlineWins(id: string) {
 }
 
 export async function fetchLocalUsers() {
-  const response = await fetch(`${URL}/localUsers/users`);
+  const response = await fetch(`${URL}/localusers/`);
   const resData = await response.json();
 
   return resData;
 }
 
 export async function fetchIncLocalWins(name: string) {
-    const response = await fetch(`${URL}/localUsers/${name}`, {
+    const response = await fetch(`${URL}/localusers/${name}`, {
       method: "PATCH",
     });
     const result = await response.json();
