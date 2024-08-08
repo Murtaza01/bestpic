@@ -1,9 +1,10 @@
 import { getStorageToken } from "./helpers";
 
-// const devURL = "http://localhost:3000"
 const URL = "https://bestpic-api.vercel.app"
+// for dev
+// const URL = "http://localhost:3000"
 
-// TODO: change the routes according to the backend
+
 export async function fetchUsers() {
     const response = await fetch(`${URL}/onlineusers/`);
     const users = await response.json();
@@ -27,6 +28,7 @@ export async function fetchToken() {
         'Authorization': `Bearer ${token}`
       }
     })
+    if(!response.ok) throw Error("couldn't fetch token")
     const resData = await response.json()
     return resData
 }

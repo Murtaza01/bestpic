@@ -13,8 +13,7 @@
   @apply flex flex-1 flex-col items-center justify-center
 }
 
-.challengeSection {
-  @apply mx-auto flex h-72 w-[90%] flex-col justify-center rounded-lg bg-gray-50; 
+.boxShadow {
 
   box-shadow:
     0px 0px 2.3px rgba(0, 0, 0, 0.035),

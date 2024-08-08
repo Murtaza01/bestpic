@@ -20,7 +20,7 @@ const Hero = () => {
         <div className="flex-1 px-4 text-center font-semibold">
           <div className="centred h-[95%] gap-10">
             <h1 className="font-heading text-5xl">Best Picture</h1>
-            <p className="font-paragraph text-lg">
+            <p className="font-paragraph text-lg  md:w-[38rem] ">
               Be the judge of the best pictures shared by people, participate by
               adding your picture and enter a challenge with other people
             </p>

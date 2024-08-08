@@ -31,30 +31,26 @@ const LocalResultPage = () => {
     enabled: isSuccess,
   });
 
-  if (isPending || dataPending) {
-    return (
-      <Loading
-        msg="Please wait while loading Result"
-        position="centred -translate-y-16 gap-3"
-      />
-    );
-  }
 
-  if (isError || !data) {
-    return (
-      <ErrorMessage
-        position="centred -translate-y-16"
-        msg="Failed to get the results, please try again"
-      />
-    );
-  }
 
   return (
     <div className="flex h-screen flex-col items-center justify-center gap-5">
       <h1 className="mt-20 text-4xl">
         {fatimaWon ? "Fatima Won" : mohamedWon ? "Mohamed Won" : "Its a Tie"}
       </h1>
-      <PieChart localUsers={data} />
+      {isPending || dataPending ? (
+        <Loading
+          msg="Please wait while loading Result"
+          position="centred -translate-y-14 gap-3"
+        />
+      ) : isError || !data ? (
+        <ErrorMessage
+          position="centred -translate-y-14"
+          msg="Failed to get the results, please try again"
+        />
+      ) : (
+        <PieChart localUsers={data} />
+      )}
     </div>
   );
 };

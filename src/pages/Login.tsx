@@ -7,7 +7,9 @@ import { getStorageToken } from "../util/helpers";
 
 const LoginPage = () => {
   const data = useLoaderData() || user;
+   
 
+  
   return (
     <div className="loginBg flex h-screen flex-col font-mono font-bold text-white">
       <Link to={".."} className="w-max px-2 py-1">
