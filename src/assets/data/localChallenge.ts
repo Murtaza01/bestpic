@@ -5,7 +5,6 @@ import roman from "../images/roman.jpg";
 import doorView from "../images/doorView.jpg";
 import books from "../images/books.jpg";
 
-
 export const localImages = [
   [
     {
@@ -48,4 +47,3 @@ export const localImages = [
     },
   ],
 ];
-

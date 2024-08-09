@@ -9,6 +9,8 @@ let firstRender = false;
 
 const LocalChallengePage = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [pickedImg, setPickedImg] = useState<string>();
+  const [width, setWidth] = useState<string>();
   const dispatch = useAppDispatch();
 
   if (!firstRender) {
@@ -20,43 +22,62 @@ const LocalChallengePage = () => {
     dispatch(zeroingScore());
   };
 
-  function handleClick(id: string) {
-    if (id === "mohamed") {
-      dispatch(incMohamed());
-    } else if (id === "fatima") {
-      dispatch(incFatima());
-    }
-    setTimeout(() => setCurrentIndex((prev) => prev + 1), 300);
+  function handleClick(id: string, index: number) {
+    if (index === 0) setWidth("first:w-[92%] last:w-[8%]");
+    else if (index === 1) setWidth("last:w-[92%] first:w-[8%]");
+    setPickedImg(id);
   }
 
+  function handleSubmit() {
+    if (pickedImg === "mohamed") {
+      dispatch(incMohamed());
+    } else if (pickedImg === "fatima") {
+      dispatch(incFatima());
+    }
+    setCurrentIndex((prev) => prev + 1);
+    setWidth("")
+  }
   const endOfChallenge = currentIndex === localImages.length;
 
   if (endOfChallenge) {
-    return <LocalResultPage />
+    return <LocalResultPage />;
   }
 
   return (
-    <>
+    <div className="relative">
       {localImages.map((person, index) => {
         if (currentIndex === index) {
           return (
-            <div key={index} className="h-dvh">
-              {person.map(({ image, id }) => {
+            <div key={index} className="flex h-screen">
+              {person.map(({ image, id }, index) => {
                 return (
-                  <img
-                    key={id}
-                    src={image}
-                    className="h-[50%] w-full cursor-pointer border-red-600 object-cover transition-all first:border-b-4 active:brightness-150 active:saturate-150"
-                    alt=""
-                    onClick={() => handleClick(id)}
-                  />
+                  <>
+                    <img
+                      key={id}
+                      src={image}
+                      className={`${width ? width : "w-[50%]"} cursor-pointer border-yellow-500 object-cover transition-all duration-500 first:border-r-2 active:brightness-150 active:saturate-150`}
+                      onClick={() => handleClick(id, index)}
+                    />
+                  </>
                 );
               })}
             </div>
           );
         }
       })}
-    </>
+      {width && (
+        <button
+          onClick={handleSubmit}
+          className={`absolute bottom-10 font-semibold font-mono z-20 rounded-md bg-white/20 backdrop-blur-sm px-4 py-1 ${
+            width.startsWith("first")
+              ? "right-[calc(92%-50%)]"
+              : "left-[calc(92%-50%)]"
+          } `}
+        >
+          Pick Image
+        </button>
+      )}
+    </div>
   );
 };
 

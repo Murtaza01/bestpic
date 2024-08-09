@@ -25,7 +25,6 @@ export async function loginLoader() {
 
   if (token) {
     const response = await fetchToken();
-    if (response instanceof Error) throw Error(response.message);
     return response;
   }
   return null;

@@ -68,7 +68,7 @@ const OnlineChallengePage = () => {
               key={_id}
               src={imageUrl}
               alt=""
-              className="h-[50%] w-full object-cover transition-all active:brightness-50 active:saturate-50"
+              className="max-w-full object-cover transition-all active:brightness-50 active:saturate-50"
             />
           );
         }

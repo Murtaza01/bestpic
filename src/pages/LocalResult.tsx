@@ -29,6 +29,7 @@ const LocalResultPage = () => {
     queryFn: fetchLocalUsers,
     // won't run unless the mutate finishes
     enabled: isSuccess,
+    retry:2
   });
 
 
