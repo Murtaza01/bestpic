@@ -24,7 +24,12 @@ const router = createBrowserRouter([
     path:"/onlineChallenge",
     element:<OnlineChallengePage />,
     loader:onlineLoader
+  },
+  {
+    path:"/error",
+    element: <ErrorPage />,
   }
+
 
 ]);
 

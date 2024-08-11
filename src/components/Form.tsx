@@ -74,12 +74,12 @@ const From = ({ userData }: props) => {
       encType="multipart/form-data"
       onSubmit={handleSubmit}
     >
-      {isError || deleteError && (
+      {isError || deleteError ? (
         <ErrorMessage
           position="absolute top-[6%]"
           msg="Failed To Fetch, Please try again later"
         />
-      )}
+      ): undefined}
 
       {userData.name ? (
         <h2 className="text-xl">{userData.name}</h2>

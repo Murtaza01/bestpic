@@ -4,12 +4,13 @@ import { useAppDispatch } from "../store";
 import { incFatima, incMohamed, zeroingScore } from "../store/scoreSlice";
 import { localImages } from "../assets/data/localChallenge";
 import LocalResultPage from "./LocalResult";
+import HeartButton from "../components/HeartButton";
 
 let firstRender = false;
 
 const LocalChallengePage = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [pickedImg, setPickedImg] = useState<string>();
+  const [index, setIndex] = useState<number>();
   const [width, setWidth] = useState<string>();
   const dispatch = useAppDispatch();
 
@@ -22,20 +23,25 @@ const LocalChallengePage = () => {
     dispatch(zeroingScore());
   };
 
-  function handleClick(id: string, index: number) {
-    if (index === 0) setWidth("first:w-[92%] last:w-[8%]");
-    else if (index === 1) setWidth("last:w-[92%] first:w-[8%]");
-    setPickedImg(id);
+  function handleClick(i: number) {
+    if (i === 0) setWidth("first:w-[92%] last:w-[8%]");
+    else if (i === 1) setWidth("last:w-[92%] first:w-[8%]");
+    setIndex(i);
   }
 
   function handleSubmit() {
-    if (pickedImg === "mohamed") {
+    //accessing a nested array to get the id
+    const id = localImages[currentIndex][index as number].id;
+
+    if (id === "mohamed") {
       dispatch(incMohamed());
-    } else if (pickedImg === "fatima") {
+    } else if (id === "fatima") {
       dispatch(incFatima());
     }
-    setCurrentIndex((prev) => prev + 1);
-    setWidth("")
+    setTimeout(() => {
+      setCurrentIndex((prev) => prev + 1);
+      setWidth("");
+    }, 1100);
   }
   const endOfChallenge = currentIndex === localImages.length;
 
@@ -49,16 +55,14 @@ const LocalChallengePage = () => {
         if (currentIndex === index) {
           return (
             <div key={index} className="flex h-screen">
-              {person.map(({ image, id }, index) => {
+              {person.map(({ image, id }, i) => {
                 return (
-                  <>
-                    <img
-                      key={id}
-                      src={image}
-                      className={`${width ? width : "w-[50%]"} cursor-pointer border-yellow-500 object-cover transition-all duration-500 first:border-r-2 active:brightness-150 active:saturate-150`}
-                      onClick={() => handleClick(id, index)}
-                    />
-                  </>
+                  <img
+                    key={id}
+                    src={image}
+                    className={`${width ? width : "w-[50%]"} object-cover transition-all duration-300 active:brightness-50 active:saturate-50`}
+                    onClick={() => handleClick(i)}
+                  />
                 );
               })}
             </div>
@@ -66,16 +70,14 @@ const LocalChallengePage = () => {
         }
       })}
       {width && (
-        <button
-          onClick={handleSubmit}
-          className={`absolute bottom-10 font-semibold font-mono z-20 rounded-md bg-white/20 backdrop-blur-sm px-4 py-1 ${
+        <HeartButton
+          onSubmit={handleSubmit}
+          style={`absolute bottom-10 z-20 ${
             width.startsWith("first")
-              ? "right-[calc(92%-50%)]"
-              : "left-[calc(92%-50%)]"
-          } `}
-        >
-          Pick Image
-        </button>
+              ? "right-[calc(50%-3rem)] "
+              : "left-[calc(50%-3rem)]"
+          }`}
+        />
       )}
     </div>
   );

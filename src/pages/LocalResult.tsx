@@ -15,7 +15,7 @@ const LocalResultPage = () => {
   const { mutate, isSuccess, isPending, isError } = useMutation({
     mutationFn: (name: string) => {
       return fetchIncLocalWins(name);
-    },
+    },  
   });
 
   useEffect(() => {
@@ -29,7 +29,6 @@ const LocalResultPage = () => {
     queryFn: fetchLocalUsers,
     // won't run unless the mutate finishes
     enabled: isSuccess,
-    retry:2
   });
 
 

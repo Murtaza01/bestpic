@@ -10,11 +10,10 @@
 }
 
 .centred {
-  @apply flex flex-1 flex-col items-center justify-center
+  @apply flex flex-1 flex-col items-center justify-center;
 }
 
 .boxShadow {
-
   box-shadow:
     0px 0px 2.3px rgba(0, 0, 0, 0.035),
     0px 0px 6.4px rgba(0, 0, 0, 0.05),
@@ -29,4 +28,26 @@
     #111827;
   background-size: cover;
   object-fit: cover;
+}
+
+.heart {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/66955/web_heart_animation.png");
+  background-repeat: no-repeat;
+  background-size: 2900%;
+  background-position: left;
+  cursor: pointer;
+}
+
+.heartAnimation {
+  animation: heart-burst .8s steps(28) forwards;
+}
+
+
+@keyframes heart-burst {
+  0%{
+    background-position: left;
+  }
+  100%{
+    background-position: right;
+  }
 }

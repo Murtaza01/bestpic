@@ -7,6 +7,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import { User } from "../util/types";
 import { useEffect, useState } from "react";
 import OnlineResultPage from "./OnlineResult";
+import HeartButton from "../components/HeartButton";
 
 let firstRender = true;
 
@@ -15,20 +16,14 @@ const OnlineChallengePage = () => {
     queryKey: ["users"],
     queryFn: fetchUsers,
   });
-
   const [userData, setUserData] = useState<User[]>([]);
-
+  const [width, setWidth] = useState<string>();
+  const [index, setIndex] = useState<number>();
   useEffect(() => {
     setUserData(data);
   }, [data]);
 
-  if (isPending)
-    return (
-      <Loading
-        msg="its loading"
-        position="middle"
-      />
-    );
+  if (isPending) return <Loading msg="its loading" position="middle" />;
 
   if (!userData || isError)
     return (
@@ -38,41 +33,59 @@ const OnlineChallengePage = () => {
       />
     );
 
-
   if (firstRender) {
     shuffle(userData);
     firstRender = false;
   }
 
-  function remove(i: number) {
+  function handleClick(i: number) {
+    if (i === 0) setWidth("first:w-[92%] last:w-[8%]");
+    else if (i === 1) setWidth("last:w-[92%] first:w-[8%]");
+    setIndex(i);
+  }
+
+  function handleSubmit() {
     setTimeout(() => {
       setUserData((prev) => {
-        if (i === 0) {
+        if (index === 0) {
           return prev.toSpliced(1, 1);
         } else {
           return prev.toSpliced(0, 1);
         }
       });
-    }, 300);
+      setWidth("")
+    }, 1100);
   }
 
   if (userData.length === 1) return <OnlineResultPage winner={userData[0]} />;
 
   return (
-    <div className="h-screen">
-      {userData.map(({ imageUrl, _id }, index) => {
-        if (index < 2) {
-          return (
-            <img
-              onClick={() => remove(index)}
-              key={_id}
-              src={imageUrl}
-              alt=""
-              className="max-w-full object-cover transition-all active:brightness-50 active:saturate-50"
-            />
-          );
-        }
-      })}
+    <div className="relative">
+      <div className="flex h-screen">
+        {userData.map(({ imageUrl, _id }, index) => {
+          if (index < 2) {
+            return (
+              <img
+                onClick={() => handleClick(index)}
+                key={_id}
+                src={imageUrl}
+                alt=""
+                className={`${width ? width : "w-[50%]"} object-cover transition-all duration-300 active:brightness-50 active:saturate-50`}
+              />
+            );
+          }
+        })}
+      </div>
+      {width && (
+        <HeartButton
+          onSubmit={handleSubmit}
+          style={`absolute bottom-10 z-20 ${
+            width.startsWith("first")
+              ? "right-[calc(50%-3rem)] "
+              : "left-[calc(50%-3rem)]"
+          }`}
+        />
+      )}
     </div>
   );
 };

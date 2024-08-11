@@ -5,6 +5,7 @@ import sectionsData from "../assets/data/challengeSection";
 import Figures from "../components/Figures";
 import Footer from "../layout/Footer";
 import { MdOutlineGroupAdd } from "react-icons/md";
+
 const RootPage = () => {
   const { local, online } = sectionsData;
 
