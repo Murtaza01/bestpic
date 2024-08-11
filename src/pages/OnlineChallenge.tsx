@@ -53,7 +53,7 @@ const OnlineChallengePage = () => {
           return prev.toSpliced(0, 1);
         }
       });
-      setWidth("")
+      setWidth("");
     }, 1100);
   }
 
@@ -62,15 +62,15 @@ const OnlineChallengePage = () => {
   return (
     <div className="relative">
       <div className="flex h-screen">
-        {userData.map(({ imageUrl, _id }, index) => {
-          if (index < 2) {
+        {userData.map(({ imageUrl, _id }, i) => {
+          if (i < 2) {
             return (
               <img
-                onClick={() => handleClick(index)}
+                onClick={() => handleClick(i)}
                 key={_id}
                 src={imageUrl}
                 alt=""
-                className={`${width ? width : "w-[50%]"} object-cover transition-all duration-300 active:brightness-50 active:saturate-50`}
+                className={`${width ? width : "w-[50%]"} border-black object-cover transition-all duration-300 first:border-r-2 active:brightness-50 active:saturate-50`}
               />
             );
           }

@@ -24,9 +24,9 @@ const RootPage = () => {
             <Figures key={onlineData.id} data={onlineData} />
           ))}
         </ChallengeSection>
-        <ChallengeSection path="" isAdd={true}>
-          <figure className="rounded-full w-20  bg-green-400 ">
-            <MdOutlineGroupAdd className="text-[5rem] translate-x-1.5 "/>
+        <ChallengeSection path="void">
+          <figure className="w-20 rounded-full bg-green-400">
+            <MdOutlineGroupAdd className="translate-x-1.5 text-[5rem]" />
           </figure>
         </ChallengeSection>
       </div>

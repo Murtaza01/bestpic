@@ -14,8 +14,8 @@ const ErrorPage = () => {
   };
   
   return (
-    <div className="grid h-screen place-content-center place-items-center gap-3">
-      <h1>something went wrong</h1>
+    <div className="grid h-screen px-5 text-center capitalize place-content-center place-items-center gap-3">
+      <h1>something went wrong, please go back and login again</h1>
       <img src={sad} width={100} height={100} alt="sad" />
     </div>
   );

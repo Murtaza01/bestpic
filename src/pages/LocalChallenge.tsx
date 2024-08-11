@@ -60,7 +60,7 @@ const LocalChallengePage = () => {
                   <img
                     key={id}
                     src={image}
-                    className={`${width ? width : "w-[50%]"} object-cover transition-all duration-300 active:brightness-50 active:saturate-50`}
+                    className={`${width ? width : "w-[50%]"} border-black object-cover transition-all duration-300 first:border-r-2 active:brightness-150`}
                     onClick={() => handleClick(i)}
                   />
                 );

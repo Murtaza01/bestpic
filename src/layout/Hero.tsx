@@ -21,7 +21,7 @@ const Hero = () => {
           <div className="centred h-[95%] gap-10">
             <h1 className="font-heading text-5xl">Best Picture</h1>
             <p className="font-paragraph text-lg  md:w-[38rem] ">
-              Be the judge of the best pictures shared by people, participate by
+              Be the judge of the best picture shared by people, participate by
               adding your picture and enter a challenge with other people
             </p>
             <a
@@ -29,7 +29,7 @@ const Hero = () => {
               onClick={scrollToView}
               className="rounded-sm bg-white/30 px-5 py-1 font-mono backdrop-blur-md"
             >
-              See Our Challenges
+              View Challenges
             </a>
           </div>
         </div>

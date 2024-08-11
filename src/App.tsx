@@ -1,9 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import LoginPage, { loginLoader } from "./pages/Login";
 import RootPage from "./pages/Root";
 import LocalChallenge from "./pages/LocalChallenge";
 import ErrorPage from "./pages/Error";
-import OnlineChallengePage, { onlineLoader } from "./pages/OnlineChallnege";
+import LoginPage, { loginLoader } from "./pages/Login";
+import OnlineChallengePage, { onlineLoader } from "./pages/OnlineChallenge";
+import VoidPage from "./pages/Void";
 
 const router = createBrowserRouter([
   {
@@ -14,23 +15,21 @@ const router = createBrowserRouter([
     path: "/login",
     element: <LoginPage />,
     loader: loginLoader,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
     path: "/localChallenge",
     element: <LocalChallenge />,
   },
   {
-    path:"/onlineChallenge",
-    element:<OnlineChallengePage />,
-    loader:onlineLoader
+    path: "/onlineChallenge",
+    element: <OnlineChallengePage />,
+    loader: onlineLoader,
   },
   {
-    path:"/error",
-    element: <ErrorPage />,
-  }
-
-
+    path: "/void",
+    element: <VoidPage />,
+  },
 ]);
 
 const App = () => {

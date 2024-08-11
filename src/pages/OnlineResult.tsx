@@ -28,16 +28,23 @@ const OnlineResultPage = ({ winner }: props) => {
   }, []);
 
   if (isPending || dataPending)
-    return <Loading msg="its loading..." position="middle" />;
+    return <Loading msg="Please wait while loading Result" position="middle" />;
 
   if (isError || !data)
-    return <ErrorMessage msg="something went wrong" position="middle" />;
+    return (
+      <ErrorMessage
+        msg="Failed to get the result, please try again later"
+        position="middle"
+      />
+    );
 
   return (
-    <div className="px-2 pt-10 space-y-10">
-      <h1 className="text-center text-lg pb-10">
-        <span className="text-yellow-500 font-bold">{winner.name}'s</span> Picture is the Winner</h1>
-        <h2 className="text-center text-lg">Top Five Winners</h2>
+    <div className="space-y-10 px-2 pt-10">
+      <h1 className="pb-10 text-center text-lg">
+        <span className="font-bold text-yellow-500">{winner.name}'s</span>{" "}
+        Picture is the Winner
+      </h1>
+      <h2 className="text-center text-lg">Top Five Winners</h2>
       <BarChart onlineUsers={data} />
     </div>
   );

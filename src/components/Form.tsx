@@ -129,9 +129,8 @@ const From = ({ userData }: props) => {
       )}
       {/* if userData is not fetched and no file were givin */}
       {!userData.imageUrl && fileName === "" && (
-        <span className="">
-          <MdError className="inline text-xl text-yellow-400" /> put your godman
-          file
+        <span className="capitalize">
+          <MdError className="inline text-xl  text-yellow-400" /> Please add image
         </span>
       )}
       {userData._id ? (

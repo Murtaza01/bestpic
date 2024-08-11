@@ -1,48 +1,127 @@
-import blueCar from "../images/blueCar.jpg";
-import oldMan from "../images/oldMan.jpg";
-import niceView from "../images/niceView.jpg";
-import roman from "../images/roman.jpg";
-import doorView from "../images/doorView.jpg";
-import books from "../images/books.jpg";
+// mohamed
+import thickTree from "../images/mohamed/thickTree.jpg";
+import desert from "../images/mohamed/desert.jpg";
+import train from "../images/mohamed/train.jpg";
+import longTree from "../images/mohamed/longTree.jpg";
+import restaurant from "../images/mohamed/restaurant.jpg";
+import blueSky from "../images/mohamed/blueSky.jpg";
+import karblia from "../images/mohamed/karblia.jpg";
+import lake from "../images/mohamed/lake.jpg";
+import night from "../images/mohamed/night.jpg";
+import mounten from "../images/mohamed/mounten.jpg";
+
+//  fatima
+import whiteBuilding from "../images/fatima/whiteBuilding.jpg"
+import bookshelf from "../images/fatima/bookshelf.jpg"
+import trees from "../images/fatima/trees.jpg"
+import coffee from "../images/fatima/coffee.jpg"
+import college from "../images/fatima/college.jpg"
+import collegeFront from "../images/fatima/collegeFront.jpg"
+import flag from "../images/fatima/flag.jpg"
+import flowers from "../images/fatima/flowers.jpg"
+import notebook from "../images/fatima/notebook.jpg"
+import zoka from "../images/fatima/zoka.jpg"
 
 export const localImages = [
   [
     {
-      image: blueCar,
+      image: thickTree,
       id: "mohamed",
     },
     {
-      image: oldMan,
+      image: whiteBuilding,
       id: "fatima",
     },
   ],
   [
     {
-      image: niceView,
+      image: bookshelf,
       id: "fatima",
     },
     {
-      image: roman,
+      image: lake,
       id: "mohamed",
     },
   ],
   [
     {
-      image: blueCar,
+      image: notebook,
       id: "fatima",
     },
     {
-      image: oldMan,
+      image: night,
       id: "mohamed",
     },
   ],
   [
     {
-      image: doorView,
+      image: longTree,
+      id: "mohamed",
+    },
+    {
+      image: flowers,
+      id: "fatima",
+    },
+  ],
+  [
+    {
+      image: college,
       id: "fatima",
     },
     {
-      image: books,
+      image: karblia,
+      id: "mohamed",
+    },
+  ],
+  [
+
+    {
+      image: mounten,
+      id: "mohamed",
+    },
+    {
+      image: collegeFront,
+      id: "fatima",
+    },
+  ],
+  [
+    {
+      image: trees,
+      id: "fatima",
+    },
+    {
+      image: blueSky,
+      id: "mohamed",
+    },
+  ],
+  [
+    {
+      image: flag,
+      id: "fatima",
+    },
+    {
+      image: train,
+      id: "mohamed",
+    },
+  ],
+  [
+    {
+      image: restaurant,
+      id: "mohamed",
+    },
+    {
+      image: coffee,
+      id: "fatima",
+    },
+
+  ],
+  [
+    {
+      image: zoka,
+      id: "fatima",
+    },
+    {
+      image: desert,
       id: "mohamed",
     },
   ],

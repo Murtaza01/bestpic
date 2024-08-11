@@ -1,6 +1,5 @@
 type props = {
   data: {
-    id: number;
     bg?: string;
     name?: string;
     svg: string;
